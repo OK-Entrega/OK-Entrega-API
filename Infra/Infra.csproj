@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <Folder Include="Contexts\" />
+    <Folder Include="Data\Contexts\" />
+    <Folder Include="Data\Repositories\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 
