@@ -5,11 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
     <Folder Include="Enum\" />
     <Folder Include="Handlers\" />
     <Folder Include="Utils\" />
-    <Folder Include="Queries\" />
   </ItemGroup>
 
 </Project>
