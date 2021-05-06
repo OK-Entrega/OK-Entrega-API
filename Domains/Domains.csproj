@@ -6,10 +6,13 @@
 
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="Entities\" />
     <Folder Include="Handlers\" />
-    <Folder Include="Repositories\" />
     <Folder Include="Queries\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Commom\Commom.csproj" />
   </ItemGroup>
 
 </Project>

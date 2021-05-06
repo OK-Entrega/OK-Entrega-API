@@ -15,6 +15,7 @@ namespace Domains.Entities
         public int AttemptsNumber { get; private set; }
         public List<string> UrlsEvidencesImages { get; private set; }
         public Local Local { get; private set; }
+        public Guid CompanyId { get; private set; }
         public Company Company { get; private set; }
 
         public Order(
@@ -35,6 +36,7 @@ namespace Domains.Entities
             AttemptsNumber = 0;
             UrlsEvidencesImages = new List<string>();
             Local = local;
+            CompanyId = company.Id;
             Company = company;
         }
     }

@@ -5,10 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Contexts\" />
+    <Compile Remove="Contexts\**" />
+    <Compile Remove="Repositories\**" />
+    <EmbeddedResource Remove="Contexts\**" />
+    <EmbeddedResource Remove="Repositories\**" />
+    <None Remove="Contexts\**" />
+    <None Remove="Repositories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Data\Contexts\" />
     <Folder Include="Data\Repositories\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>
