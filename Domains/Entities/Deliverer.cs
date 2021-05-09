@@ -1,19 +1,25 @@
-﻿namespace Domains.Entities
+﻿using System.Collections.Generic;
+
+namespace Domains.Entities
 {
     public class Deliverer : User
     {
-        public string Celular { get; private set; }
+        public string CellphoneNumber { get; private set; }
+        public ICollection<FinishOrder> FinishedOrders { get; private set; }
+        public ICollection<OccurrenceOrder> OccurrencesOrders { get; private set; }
 
         public Deliverer(
-            string nome,
-            string senha, 
-            string celular
+            string name,
+            string password,
+            string cellphoneNumber
         ) : base(
-            nome,
-            senha
+            name,
+            password
         )
         {
-            Celular = celular;
+            CellphoneNumber = cellphoneNumber;
+            FinishedOrders = new List<FinishOrder>();
+            OccurrencesOrders = new List<OccurrenceOrder>();
         }
     }
 }

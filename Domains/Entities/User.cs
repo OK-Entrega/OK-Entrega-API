@@ -2,15 +2,15 @@
 
 namespace Domains.Entities
 {
-    public class User : Entity
+    public abstract class User : Entity
     {
-        public string Nome { get; private set; }
-        public string Senha { get; private set; }
+        public string Name { get; private set; }
+        public string Password { get; private set; }
 
-        public User(string nome, string senha)
+        public User(string name, string password)
         {
-            Nome = nome;
-            Senha = senha;
+            Name = name;
+            Password = password;
         }
     }
 }

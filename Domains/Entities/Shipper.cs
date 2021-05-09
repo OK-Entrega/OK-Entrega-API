@@ -1,19 +1,23 @@
-﻿namespace Domains.Entities
+﻿using System.Collections.Generic;
+
+namespace Domains.Entities
 {
     public class Shipper : User
     {
         public string Email { get; private set; }
+        public ICollection<ShipperCompany> ShipperHasCompanies { get; private set; }
 
         public Shipper(
-            string nome, 
-            string senha, 
+            string name, 
+            string password, 
             string email
         ) : base(
-            nome, 
-            senha
+            name,
+            password
         )
         {
             Email = email;
+            ShipperHasCompanies = new List<ShipperCompany>();
         }
     }
 }
