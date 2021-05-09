@@ -11,6 +11,8 @@ namespace Domains.Entities
         public EnCompanySegment Segment { get; private set; }
         public ICollection<ShipperCompany> CompanyHasShippers { get; private set; }
 
+        public Company(){}
+
         public Company(
             string name,
             string cnpj,

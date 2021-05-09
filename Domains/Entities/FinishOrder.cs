@@ -9,16 +9,18 @@ namespace Domains.Entities
     {
         public EnFinishType FinishType { get; private set; }
         public EnReasonDevolution? ReasonDevolution { get; private set; }
-        public ICollection<string> UrlsEvidences { get; private set; }
+        public string UrlsEvidences { get; private set; }
         public string UrlVoucher { get; private set; }
         public Deliverer Deliverer { get; private set; }
         public Guid DelivererId { get; private set; }
         public Order Order { get; private set; }
         public Guid OrderId { get; private set; }
 
+        public FinishOrder(){}
+
         public FinishOrder(
             EnReasonDevolution reasonDevolution,
-            List<string> urlsEvidences,
+            string urlsEvidences,
             string urlVoucher,
             Guid delivererId,
             Guid orderId,
