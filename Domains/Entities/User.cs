@@ -2,10 +2,12 @@
 
 namespace Domains.Entities
 {
-    public abstract class User : Entity
+    public class User : Entity
     {
         public string Name { get; private set; }
         public string Password { get; private set; }
+        public Shipper Shipper { get; private set; }
+        public Deliverer Deliverer { get; private set; }
 
         public User(string name, string password)
         {
