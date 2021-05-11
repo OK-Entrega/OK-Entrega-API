@@ -1,14 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Handlers\" />
-    <Folder Include="Queries\" />
-    <Folder Include="Repositories\" />
+    <Folder Include="Commands\Shipper\" />
+    <Folder Include="Commands\Order\" />
+    <Folder Include="Handlers\Commands\Company\" />
+    <Folder Include="Handlers\Commands\Order\" />
+    <Folder Include="Handlers\Commands\Shipper\" />
+    <Folder Include="Handlers\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
