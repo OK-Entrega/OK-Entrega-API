@@ -1,4 +1,7 @@
+using Domains.Repositories;
 using Infra.Data.Contexts;
+using Infra.Data.Repositories;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -71,6 +74,11 @@ namespace OkEntrega
                 c.IncludeXmlComments(xmlPath);
 
             });
+
+            var assembly = AppDomain.CurrentDomain.Load("Domains");
+            services.AddMediatR(assembly);
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IShipperRepository, ShipperRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

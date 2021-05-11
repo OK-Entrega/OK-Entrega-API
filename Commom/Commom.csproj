@@ -5,8 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\" />
-    <Folder Include="Utils\" />
+    <Compile Remove="Handlers\**" />
+    <EmbeddedResource Remove="Handlers\**" />
+    <None Remove="Handlers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
+    <PackageReference Include="Flunt" Version="2.0.3" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+    <PackageReference Include="SendGrid" Version="9.23.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.11.0" />
   </ItemGroup>
 
 </Project>

@@ -3,6 +3,7 @@
     public class GenericCommandResult : ICommandResult
     {
         public int StatusCode { get; set; }
+        public object Status { get; set; }
         public bool Sucesso { get; set; }
         public string Mensagem { get; set; }
         public object Dados { get; set; }

@@ -31,7 +31,8 @@ namespace API.Controllers
                 {
                     200 => Ok(result),
                     401 => Unauthorized(result),
-                    404 => NotFound(result)
+                    404 => NotFound(result),
+                    _ => null
                 };
             }
             catch(Exception ex)

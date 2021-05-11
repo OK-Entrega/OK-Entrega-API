@@ -5,10 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Handlers\" />
+    <Folder Include="Commands\Responses\" />
+    <Folder Include="Handlers\Queries\" />
     <Folder Include="Queries\" />
-    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flunt.Br" Version="1.4.1" />
   </ItemGroup>
 
   <ItemGroup>
