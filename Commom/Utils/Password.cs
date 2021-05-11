@@ -2,12 +2,12 @@
 {
     public static class Password
     {
-        public static string Criptografar(string senha)
+        public static string Encrypt(string senha)
         {
             return BCrypt.Net.BCrypt.HashPassword(senha);
         }
 
-        public static bool Validar(string senha, string hash)
+        public static bool Validate(string senha, string hash)
         {
             return BCrypt.Net.BCrypt.Verify(senha, hash);
         }

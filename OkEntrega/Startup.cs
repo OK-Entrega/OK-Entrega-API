@@ -79,6 +79,7 @@ namespace OkEntrega
             services.AddMediatR(assembly);
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IShipperRepository, ShipperRepository>();
+            services.AddTransient<IDelivererRepository, DelivererRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

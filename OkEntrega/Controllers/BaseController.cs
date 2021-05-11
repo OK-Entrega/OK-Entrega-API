@@ -30,6 +30,7 @@ namespace API.Controllers
                 return result.StatusCode switch
                 {
                     200 => Ok(result),
+                    400 => BadRequest(result),
                     401 => Unauthorized(result),
                     404 => NotFound(result),
                     _ => null

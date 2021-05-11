@@ -36,7 +36,7 @@ namespace Domains.Commands.Requests.UserRequests
             AddNotifications(new Contract<CreateShipperRequest>()
                 .Requires()
                 .IsTrue((Name.Length > 2) && (Name.Length < 41), "Nome", "O nome deve ter de 3 a 40 caracteres!")
-                .IsNotEmail(Email, "Email", "Email inválido!")
+                .IsEmail(Email, "Email", "Email inválido!")
                 .IsTrue((Password.Length > 5) && (Password.Length < 21), "Senha", "A senha deve ter de 6 a 20 caracteres!")
                 .IsFalse(CellphoneNumber.Length == 11, "Número de telefone celular", "Número de celular inválido!")
             );
