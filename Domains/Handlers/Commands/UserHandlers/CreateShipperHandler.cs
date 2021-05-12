@@ -1,6 +1,6 @@
 ﻿using Commom.Commands;
 using Commom.Utils;
-using Domains.Commands.Requests.UserRequests;
+using Domains.Commands.Requests.ShipperRequests;
 using Domains.Entities;
 using Domains.Repositories;
 using MediatR;
@@ -14,13 +14,11 @@ namespace Domains.Handlers.Commands.UserHandlers
     {
         private readonly IUserRepository _userRepository;
         private readonly IShipperRepository _shipperRepository;
-        private readonly IDelivererRepository _delivererRepository;
 
-        public CreateShipperHandler(IUserRepository userRepository, IShipperRepository shipperRepository, IDelivererRepository delivererRepository)
+        public CreateShipperHandler(IUserRepository userRepository, IShipperRepository shipperRepository)
         {
             _userRepository = userRepository;
             _shipperRepository = shipperRepository;
-            _delivererRepository = delivererRepository;
         }
 
         public Task<GenericCommandResult> Handle(CreateShipperRequest request, CancellationToken cancellationToken)
@@ -31,7 +29,7 @@ namespace Domains.Handlers.Commands.UserHandlers
                 if (exists)
                     return Task.FromResult(new GenericCommandResult(400, "Já existe um usuário cadastrado com esse email!", request.Email));
 
-                string passwordEncoded = Password.Criptografar(request.Password);
+                string passwordEncoded = Password.Encrypt(request.Password);
 
                 var user = new User(request.Name, passwordEncoded);
                 var shipper = new Shipper(request.Email, user.Id);

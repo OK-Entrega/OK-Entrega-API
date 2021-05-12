@@ -1,4 +1,4 @@
-﻿using Domains.Commands.Requests.UserRequests;
+﻿using Domains.Commands.Requests.ShipperRequests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

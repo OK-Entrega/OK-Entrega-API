@@ -2,7 +2,7 @@
 using Flunt.Validations;
 using System;
 
-namespace Domains.Commands.Requests.UserRequests
+namespace Domains.Commands.Requests.ShipperRequests
 {
     public class CreateShipperRequest : CommandRequest
     {
