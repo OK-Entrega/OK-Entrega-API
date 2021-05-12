@@ -1,4 +1,5 @@
-﻿using Domains.Commands.Requests.ShipperRequests;
+﻿using Domains.Commands.Requests.DelivererRequests;
+using Domains.Commands.Requests.ShipperRequests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -13,6 +14,12 @@ namespace API.Controllers
 
         [HttpPost("signup/shipper")]
         public async Task<ObjectResult> SignUpShipper([FromBody] CreateShipperRequest request)
+        {
+            return await Result(request);
+        }
+
+        [HttpPost("signup/deliverer")]
+        public async Task<ObjectResult> SignUpDeliverer([FromBody] CreateDelivererRequest request)
         {
             return await Result(request);
         }

@@ -1,7 +1,6 @@
 ﻿using Domains.Entities;
 using Domains.Repositories;
 using Infra.Data.Contexts;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
@@ -16,29 +15,31 @@ namespace Infra.Data.Repositories
             _context = context;
         }
 
-        public Deliverer Search(string cellphoneNumber)
+        public Deliverer Search(Guid id)
         {
-            return _context.Deliverers.Include(d => d.User).FirstOrDefault(d => d.CellphoneNumber == cellphoneNumber);
+            throw new NotImplementedException();
         }
 
-        public void Create(Deliverer deliverer)
+        public Deliverer Search(string cellphoneNumber)
+        {
+            return _context.Deliverers.FirstOrDefault(d => d.CellphoneNumber == cellphoneNumber);
+        }
+
+        public Deliverer Add(Deliverer deliverer)
         {
             _context.Deliverers.Add(deliverer);
             _context.SaveChanges();
+            return deliverer;
         }
 
-        public void Update(Deliverer deliverer)
+        public Deliverer Change(Deliverer deliverer)
         {
-            _context.Entry(deliverer).State = EntityState.Modified;
-            _context.SaveChanges();
+            throw new NotImplementedException();
         }
 
-        public void Delete(Guid id)
+        public void Remove(Guid id)
         {
-            /*var deliverer = Search(id);
-            if (deliverer != null)
-                _context.Deliverers.Remove(deliverer);
-            _context.SaveChanges();*/
+            throw new NotImplementedException();
         }
     }
 }

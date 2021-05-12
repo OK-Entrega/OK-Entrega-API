@@ -8,7 +8,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Domains.Handlers.Commands.UserHandlers
+namespace Domains.Handlers.Commands.ShipperHandlers
 {
     public class CreateShipperHandler : IRequestHandler<CreateShipperRequest, GenericCommandResult>
     {

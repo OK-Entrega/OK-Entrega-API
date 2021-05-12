@@ -8,14 +8,14 @@ namespace Commom.Utils
 {
     public static class JWT
     {
-        public static string Generate(string name, string email, Guid idUser, int minutes)
+        public static string Generate(string name, string discriminator, Guid idUser, int minutes)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("OKEntrega-b71e507ae8f44b4396530166279942af"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[] {
                 new Claim("name", name),
-                new Claim("email", email),
+                new Claim("discriminator", discriminator),
                 new Claim(JwtRegisteredClaimNames.Jti, idUser.ToString()),
             };
 
