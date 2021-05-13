@@ -37,7 +37,7 @@ namespace Domains.Handlers.Commands.DelivererHandlers
                 _userRepository.Create(user);
                 _delivererRepository.Add(deliverer);
 
-                //Enviar sms Sendgrid.SendEmail(shipper.Email, "Bem-vindo!", "Seja muito bem vindo ao OKEntrega, um sistema SaaS para ajudar na gestão de entregas da sua empresa!");
+                TwilioService.SendSMS(deliverer.CellphoneNumber, "Olá " + user.Name + ". Seja muito bem vindo ao OKEntrega, um sistema SaaS para te ajudar nas suas entregas!");
 
                 return Task.FromResult(new GenericCommandResult(200, "Seja bem vindo, " + user.Name, JWT.Generate(user.Name, deliverer.CellphoneNumber, user.Id, 100)));
             }

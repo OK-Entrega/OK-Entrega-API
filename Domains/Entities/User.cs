@@ -6,6 +6,7 @@ namespace Domains.Entities
     {
         public string Name { get; private set; }
         public string Password { get; private set; }
+        public bool Active { get; private set; }
         public Shipper Shipper { get; private set; }
         public Deliverer Deliverer { get; private set; }
 
