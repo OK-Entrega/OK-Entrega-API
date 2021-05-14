@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domains.Commands.Company
 {
-    public class RemoveCompanyCommand : Notifiable<Notification>, ICommand
+    public class RemoveCompanyRequest : Notifiable<Notification>, ICommand
     {
         public Guid CompanyId { get; set; }
         public void Validate(){}
