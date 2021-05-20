@@ -1,6 +1,7 @@
 ﻿using Domains.Entities;
 using Domains.Repositories;
 using Infra.Data.Contexts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
@@ -22,7 +23,7 @@ namespace Infra.Data.Repositories
 
         public Deliverer Search(string cellphoneNumber)
         {
-            return _context.Deliverers.FirstOrDefault(d => d.CellphoneNumber == cellphoneNumber);
+            return _context.Deliverers.Include(d => d.User).FirstOrDefault(d => d.CellphoneNumber == cellphoneNumber);
         }
 
         public Deliverer Add(Deliverer deliverer)

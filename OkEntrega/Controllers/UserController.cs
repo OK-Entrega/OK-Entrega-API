@@ -23,5 +23,11 @@ namespace API.Controllers
         {
             return await Result(request);
         }
+
+        [HttpPost("signin/deliverer")]
+        public async Task<ObjectResult> SignInDeliverer([FromBody] LoginDelivererRequest request)
+        {
+            return await Result(request);
+        }
     }
 }
