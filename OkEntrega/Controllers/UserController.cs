@@ -29,5 +29,25 @@ namespace API.Controllers
         {
             return await Result(request);
         }
+
+        /*[HttpGet("list-profile")]
+        public IQueryResult ListProfile([FromServices] ListProfileQueryHandler handler)
+        {
+            var query = new ListProfileQuery();
+            return (GenericQueryResult)handler.Handle(query);
+        }
+
+        [HttpPut("change-user")]
+        public ICommandResult Change(ChangeDelivererCommand command, [FromServices] ChangeDelivererHandler handler)
+        {
+            return (GenericCommandResult)handler.Handle(command);
+        }
+        [HttpDelete("delete-deliverer")]
+        [Authorize]
+        public ICommandResult DeletarConta(DeleteDelivererCommand command, [FromServices] DeleteDelivererHandler handler)
+        {
+
+            return (GenericCommandResult)handler.Handle(command);
+        }*/
     }
 }

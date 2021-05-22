@@ -13,7 +13,7 @@ namespace Domains.Commands.Requests.DelivererRequests
             string password
         )
         {
-            CellphoneNumber = cellphoneNumber.Trim();
+            CellphoneNumber = cellphoneNumber.Trim().Replace(" ", "").Replace("(", "").Replace(")", "").Replace("+", "").Replace("-", "");
             if (CellphoneNumber.Length != 11)
                 CellphoneNumber = "1";
             Password = password.Trim();

@@ -1,4 +1,5 @@
 ﻿using Commom.Entities;
+using Flunt.Validations;
 using System;
 using System.Collections.Generic;
 
@@ -11,11 +12,24 @@ namespace Domains.Entities
         public Guid UserId { get; private set; }
         public ICollection<ShipperCompany> ShipperHasCompanies { get; private set; }
 
-        public Shipper(string email, Guid userId)
+        public Shipper(
+            string email,
+            Guid userId
+        )
         {
-            Email = email;
-            UserId = userId;
-            ShipperHasCompanies = new List<ShipperCompany>();
+            email = email.Trim().ToLower();
+
+            AddNotifications(new Contract<Shipper>()
+                .Requires()
+                .IsEmail(email, "Email", "Email inválido!")
+            );
+
+            if (IsValid)
+            {
+                Email = email;
+                UserId = userId;
+                ShipperHasCompanies = new List<ShipperCompany>();
+            }
         }
     }
 }

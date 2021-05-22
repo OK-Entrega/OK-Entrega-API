@@ -96,7 +96,11 @@ namespace OkEntrega
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "OK-Entrega API V1");
             });
 
-            app.UseCors("CustomPermission");
+            //app.UseHttpsRedirection();
+
+            //app.UseCors("CustomPermission");
+
+            app.UseCors(o => o.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseRouting();
 
