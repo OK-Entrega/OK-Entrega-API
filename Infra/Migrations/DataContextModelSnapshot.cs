@@ -28,6 +28,9 @@ namespace Infra.Migrations
                     b.Property<string>("CNPJ")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -51,11 +54,17 @@ namespace Infra.Migrations
                     b.Property<string>("CellphoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CodeCellphoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("VerifyingCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -79,6 +88,12 @@ namespace Infra.Migrations
 
                     b.Property<int>("FinishType")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("LatitudeDeliverer")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("LongitudeDeliverer")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
@@ -114,11 +129,20 @@ namespace Infra.Migrations
                     b.Property<Guid>("DelivererId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<decimal>("LatitudeDeliverer")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("LongitudeDeliverer")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("ReasonOccurrence")
                         .HasColumnType("int");
+
+                    b.Property<string>("UrlsEvidences")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -138,6 +162,12 @@ namespace Infra.Migrations
                     b.Property<string>("AccessKey")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CFOP")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarrierCNPJ")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CarrierName")
                         .HasColumnType("nvarchar(max)");
 
@@ -147,8 +177,29 @@ namespace Infra.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("FromCNPJ")
+                    b.Property<string>("DestinationAddress")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DestinationCEP")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DestinationCity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DestinationComplement")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DestinationDistrict")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DestinationNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DestinationUF")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DispatchedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("IssueType")
                         .HasColumnType("int");
@@ -156,35 +207,62 @@ namespace Infra.Migrations
                     b.Property<DateTime>("IssuedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("IssuerCompanyName")
+                    b.Property<string>("IssuerAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IssuerStateRegistration")
+                    b.Property<string>("IssuerCEP")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IssuerCity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IssuerComplement")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IssuerDistrict")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IssuerNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IssuerUF")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ModelNFE")
                         .HasColumnType("int");
 
+                    b.Property<string>("NatureOperation")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ReceiverCompanyName")
+                    b.Property<string>("NumericCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ReceiverEmail")
+                    b.Property<string>("ReceiverCNPJ")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ReceiverStateRegistration")
+                    b.Property<string>("ReceiverName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Series")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ToCNPJ")
+                    b.Property<decimal>("TotalValue")
+                        .HasColumnType("DECIMAL");
+
+                    b.Property<string>("UFIssuerCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("TotalPriceNFE")
+                    b.Property<string>("VerifyingDigit")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Weight")
                         .HasColumnType("DECIMAL");
+
+                    b.Property<string>("XMLPath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -198,6 +276,9 @@ namespace Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CodeEmail")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -318,7 +399,7 @@ namespace Infra.Migrations
             modelBuilder.Entity("Domains.Entities.Order", b =>
                 {
                     b.HasOne("Domains.Entities.Company", "Company")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -359,6 +440,8 @@ namespace Infra.Migrations
             modelBuilder.Entity("Domains.Entities.Company", b =>
                 {
                     b.Navigation("CompanyHasShippers");
+
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("Domains.Entities.Deliverer", b =>

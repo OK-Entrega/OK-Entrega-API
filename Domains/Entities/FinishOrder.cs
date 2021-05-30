@@ -12,6 +12,8 @@ namespace Domains.Entities
         public EnReasonDevolution? ReasonDevolution { get; private set; }
         public Guid DelivererId { get; private set; }
         public Deliverer Deliverer { get; private set; }
+        public decimal LatitudeDeliverer { get; private set; }
+        public decimal LongitudeDeliverer { get; private set; }
         public Guid OrderId { get; private set; }
         public Order Order { get; private set; }
 
@@ -22,6 +24,8 @@ namespace Domains.Entities
             string urlsEvidences,
             string urlVoucher,
             Guid delivererId,
+            decimal latitudeDeliverer,
+            decimal longitudeDeliverer,
             Guid orderId,
             EnFinishType finishType = EnFinishType.Success
         )
@@ -35,6 +39,8 @@ namespace Domains.Entities
                 EnFinishType.Devolution => reasonDevolution,
                 _ => null
             };
+            LatitudeDeliverer = latitudeDeliverer;
+            LongitudeDeliverer = longitudeDeliverer;
             UrlsEvidences = urlsEvidences;
             UrlVoucher = urlVoucher;
             DelivererId = delivererId;

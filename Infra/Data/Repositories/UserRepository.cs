@@ -3,6 +3,7 @@ using Domains.Repositories;
 using Infra.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 
 namespace Infra.Data.Repositories
 {
@@ -17,27 +18,38 @@ namespace Infra.Data.Repositories
 
         public User Search(Guid id)
         {
-            return _context.Users.Find(id);
+            return
+                _context
+                    .Users
+                    .Include(u => u.Deliverer)
+                    .Include(u => u.Shipper)
+                    .FirstOrDefault(u => u.Id == id);
         }
 
         public void Create(User user)
         {
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            _context
+                .Users
+                .Add(user);
+            _context
+                .SaveChanges();
         }
 
         public void Update(User user)
         {
-            _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
+            _context
+                .Entry(user).State = EntityState.Modified;
+            _context
+                .SaveChanges();
         }
 
-        public void Delete(Guid id)
+        public void Delete(User user)
         {
-            var user = Search(id);
-            if (user != null)
-                _context.Users.Remove(user);
-            _context.SaveChanges();
+            _context
+                .Users
+                .Remove(user);
+            _context
+                .SaveChanges();
         }
     }
 }

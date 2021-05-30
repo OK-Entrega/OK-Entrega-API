@@ -33,10 +33,11 @@ namespace API.Controllers
                     400 => BadRequest(result),
                     401 => Unauthorized(result),
                     404 => NotFound(result),
+                    500 => StatusCode(500, result),
                     _ => null
                 };
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, new GenericCommandResult(500, "Erro no servidor! Desculpe-nos.", ex.Message));
             }
@@ -55,8 +56,11 @@ namespace API.Controllers
                 return result.StatusCode switch
                 {
                     200 => Ok(result),
+                    400 => BadRequest(result),
                     401 => Unauthorized(result),
-                    404 => NotFound(result)
+                    404 => NotFound(result),
+                    500 => StatusCode(500, result),
+                    _ => null
                 };
             }
             catch (Exception ex)

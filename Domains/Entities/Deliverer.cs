@@ -1,5 +1,4 @@
 ﻿using Commom.Entities;
-using Flunt.Validations;
 using System;
 using System.Collections.Generic;
 
@@ -9,6 +8,7 @@ namespace Domains.Entities
     {
         public string CellphoneNumber { get; private set; }
         public string VerifyingCode { get; private set; }
+        public string CodeCellphoneNumber { get; private set; }
         public Guid UserId { get; private set; }
         public User User { get; private set; }
         public ICollection<FinishOrder> FinishedOrders { get; private set; }
@@ -16,39 +16,47 @@ namespace Domains.Entities
 
         public Deliverer(
             string cellphoneNumber,
-            Guid userId
+            User user
         )
         {
-            cellphoneNumber = cellphoneNumber.Trim().Replace("+", "").Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
-
-            AddNotifications(new Contract<Deliverer>()
-                .Requires()
-                .IsTrue(cellphoneNumber.Length == 11, "Número de telefone celular", "O número de telefone celular deve conter 11 dígitos!")
-            );
-
-            if (IsValid)
-            {
-                CellphoneNumber = cellphoneNumber;
-                UserId = userId;
-                FinishedOrders = new List<FinishOrder>();
-                OccurrencesOrders = new List<OccurrenceOrder>();
-                VerifyingCode = GenerateVerifyingCode();
-            }
+            CellphoneNumber = cellphoneNumber;
+            User = user;
+            FinishedOrders = new List<FinishOrder>();
+            OccurrencesOrders = new List<OccurrenceOrder>();
+            VerifyingCode = GenerateVerifyingCode();
+            CodeCellphoneNumber = null;
         }
 
-        private string GenerateVerifyingCode()
+        public Deliverer(){}
+
+        private static string GenerateVerifyingCode()
         {
             string caracters = "0123456789";
             string verifyingCode = "";
 
             Random random = new Random();
 
-            for (int c = 0; c <= 4; c++)
+            for (int c = 0; c < 4; c++)
             {
                 verifyingCode += caracters.Substring(random.Next(0, caracters.Length - 1), 1);
             }
 
             return verifyingCode;
+        }
+
+        public void ChangeCellphoneNumber(string cellphoneNumber)
+        {
+            CellphoneNumber = cellphoneNumber;
+        }
+
+        public void TurnVerified()
+        {
+            VerifyingCode = null;
+        }
+
+        public void RequestNewCellphoneNumber(string codeCellphoneNumber)
+        {
+            CodeCellphoneNumber = codeCellphoneNumber;
         }
     }
 }

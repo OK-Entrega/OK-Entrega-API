@@ -6,11 +6,11 @@ namespace Domains.Repositories
 {
     public interface IOrderRepository
     {
-        List<Order> List(Guid idOrder, string name = null);
+        ICollection<Order> Search(ICollection<Guid> ids);
         Order Search(Guid id);
-        Order Search(string cnpj);
-        Order Add(Order order);
-        Order Change(Order order);
-        void Remove(Guid id);
+        Order Search(string accessKey);
+        void Create(Order order);
+        void Update(Order order);
+        void Delete(Order order);
     }
 }

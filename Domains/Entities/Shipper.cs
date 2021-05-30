@@ -8,28 +8,32 @@ namespace Domains.Entities
     public class Shipper : Entity
     {
         public string Email { get; private set; }
+        public string CodeEmail { get; private set; }
         public User User { get; private set; }
         public Guid UserId { get; private set; }
         public ICollection<ShipperCompany> ShipperHasCompanies { get; private set; }
 
         public Shipper(
             string email,
-            Guid userId
+            User user
         )
         {
-            email = email.Trim().ToLower();
+            Email = email;
+            User = user;
+            ShipperHasCompanies = new List<ShipperCompany>();
+            CodeEmail = null;
+        }
 
-            AddNotifications(new Contract<Shipper>()
-                .Requires()
-                .IsEmail(email, "Email", "Email inválido!")
-            );
+        public Shipper(){}
 
-            if (IsValid)
-            {
-                Email = email;
-                UserId = userId;
-                ShipperHasCompanies = new List<ShipperCompany>();
-            }
+        public void ChangeEmail(string email)
+        {
+            Email = email;
+        }
+
+        public void RequestNewEmail(string codeEmail)
+        {
+            CodeEmail = codeEmail;
         }
     }
 }

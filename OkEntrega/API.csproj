@@ -28,5 +28,9 @@
     <ProjectReference Include="..\Infra\Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Uploads\XML\" />
+  </ItemGroup>
+
 
 </Project>

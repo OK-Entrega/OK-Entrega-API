@@ -23,22 +23,30 @@ namespace Infra.Data.Repositories
 
         public Deliverer Search(string cellphoneNumber)
         {
-            return _context.Deliverers.Include(d => d.User).FirstOrDefault(d => d.CellphoneNumber == cellphoneNumber);
+            return 
+                _context
+                .Deliverers
+                .Include(d => d.User)
+                .FirstOrDefault(d => d.CellphoneNumber == cellphoneNumber);
         }
 
-        public Deliverer Add(Deliverer deliverer)
+        public void Create(Deliverer deliverer)
         {
-            _context.Deliverers.Add(deliverer);
-            _context.SaveChanges();
-            return deliverer;
+            _context
+                .Deliverers
+                .Add(deliverer);
+            _context
+                .SaveChanges();
         }
 
-        public Deliverer Change(Deliverer deliverer)
+        public void Update(Deliverer deliverer)
         {
-            throw new NotImplementedException();
+            _context.Entry(deliverer).State = EntityState.Modified;
+            _context
+                .SaveChanges();
         }
 
-        public void Remove(Guid id)
+        public void Delete(Guid id)
         {
             throw new NotImplementedException();
         }

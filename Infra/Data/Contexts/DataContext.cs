@@ -19,11 +19,13 @@ namespace Infra.Data.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Ignore<Local>();
+                .Entity<Order>()
+                .Property(o => o.TotalValue)
+                .HasColumnType("DECIMAL");
 
             modelBuilder
                 .Entity<Order>()
-                .Property("TotalPriceNFE")
+                .Property(o => o.Weight)
                 .HasColumnType("DECIMAL");
         }
     }

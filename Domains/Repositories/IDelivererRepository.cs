@@ -7,8 +7,8 @@ namespace Domains.Repositories
     {
         Deliverer Search(Guid id);
         Deliverer Search(string cellphoneNumber);
-        Deliverer Add(Deliverer deliverer);
-        Deliverer Change(Deliverer deliverer);
-        void Remove(Guid id);
+        void Create(Deliverer deliverer);
+        void Update(Deliverer deliverer);
+        void Delete(Guid id);
     }
 }

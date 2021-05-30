@@ -7,7 +7,7 @@ namespace Domains.Repositories
     {
         User Search(Guid id);
         void Create(User user);
-        //void Change(User user);
-        //void Remove(Guid id);
+        void Update(User user);
+        void Delete(User user);
     }
 }

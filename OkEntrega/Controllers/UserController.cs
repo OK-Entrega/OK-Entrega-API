@@ -1,53 +1,91 @@
-﻿using Domains.Commands.Requests.DelivererRequests;
-using Domains.Commands.Requests.ShipperRequests;
+﻿using Domains.Commands.Requests.UserRequests;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [Route("api/v1/users")]
+    [Route("api/v1/account")]
     [ApiController]
     public class UserController : BaseController
     {
         public UserController(IMediator mediator) : base(mediator) { }
 
-        [HttpPost("signup/shipper")]
-        public async Task<ObjectResult> SignUpShipper([FromBody] CreateShipperRequest request)
+        [HttpPost("signup")]
+        public async Task<ObjectResult> SignUp([FromBody] CreateAccountRequest request)
         {
             return await Result(request);
         }
 
-        [HttpPost("signup/deliverer")]
-        public async Task<ObjectResult> SignUpDeliverer([FromBody] CreateDelivererRequest request)
+        [HttpPost("signin")]
+        public async Task<ObjectResult> SignIn([FromBody] LoginRequest request)
         {
             return await Result(request);
         }
 
-        [HttpPost("signin/deliverer")]
-        public async Task<ObjectResult> SignInDeliverer([FromBody] LoginDelivererRequest request)
+        [HttpPost("request-new-password")]
+        public async Task<ObjectResult> RequestNewPassword([FromBody] RequestNewPasswordRequest request)
         {
             return await Result(request);
         }
 
-        /*[HttpGet("list-profile")]
-        public IQueryResult ListProfile([FromServices] ListProfileQueryHandler handler)
+        [HttpPut("change-password-forgotten")]
+        public async Task<ObjectResult> ChangePasswordForgotten([FromBody] ChangePasswordForgottenRequest request)
         {
-            var query = new ListProfileQuery();
-            return (GenericQueryResult)handler.Handle(query);
+            return await Result(request);
+        }
+
+        [HttpPut("change-password")]
+        [Authorize]
+        public async Task<ObjectResult> ChangePassword([FromBody] ChangePasswordRequest request)
+        {
+            request.Discriminator = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "discriminator").Value;
+            request.UserId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return await Result(request);
         }
 
         [HttpPut("change-user")]
-        public ICommandResult Change(ChangeDelivererCommand command, [FromServices] ChangeDelivererHandler handler)
-        {
-            return (GenericCommandResult)handler.Handle(command);
-        }
-        [HttpDelete("delete-deliverer")]
         [Authorize]
-        public ICommandResult DeletarConta(DeleteDelivererCommand command, [FromServices] DeleteDelivererHandler handler)
+        public async Task<ObjectResult> ChangeUser([FromBody] ChangeUserRequest request)
         {
+            request.UserId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return await Result(request);
+        }
 
-            return (GenericCommandResult)handler.Handle(command);
-        }*/
+        [HttpPut("verify-account")]
+        public async Task<ObjectResult> VerifyAccount([FromBody] VerifyAccountRequest request)
+        {
+            return await Result(request);
+        }
+
+        [HttpPost("request-new-access")]
+        [Authorize]
+        public async Task<ObjectResult> RequestNewAccess([FromBody] RequestNewAccessRequest request)
+        {
+            request.Discriminator = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "discriminator").Value;
+            request.UserId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return await Result(request);
+        }
+
+        [HttpPut("change-access")]
+        [Authorize]
+        public async Task<ObjectResult> ChangeAccess([FromBody] ChangeAccessRequest request)
+        {
+            request.Discriminator = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "discriminator").Value;
+            request.UserId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return await Result(request);
+        }
+
+        [HttpDelete("delete")]
+        [Authorize]
+        public async Task<ObjectResult> DeletarConta([FromBody] DeleteAccountRequest request)
+        {
+            request.UserId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return await Result(request);
+        }
     }
 }

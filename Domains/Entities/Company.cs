@@ -1,6 +1,6 @@
 ﻿using Commom.Entities;
 using Commom.Enum;
-using Flunt.Validations;
+using System;
 using System.Collections.Generic;
 
 namespace Domains.Entities
@@ -9,33 +9,36 @@ namespace Domains.Entities
     {
         public string Name { get; private set; }
         public string CNPJ { get; private set; }
+        public string Code { get; private set; }
         public EnCompanySegment Segment { get; private set; }
         public ICollection<ShipperCompany> CompanyHasShippers { get; private set; }
+        public ICollection<Order> Orders { get; private set; }
 
         public Company() { }
 
         public Company(
             string name,
             string cnpj,
+            string code,
             EnCompanySegment segment
         )
         {
-            name = name.Trim();
-            cnpj = cnpj.Trim().Replace("-", "").Replace(".", "").Replace("/", "");
+            Name = name;
+            CNPJ = cnpj;
+            Code = code;
+            Segment = segment;
+            CompanyHasShippers = new List<ShipperCompany>();
+        }
 
-            AddNotifications(new Contract<Company>()
-                .Requires()
-                .IsTrue((name.Length > 2 && name.Length < 41), "Nome", "O nome da empresa deve ter entre 3 à 40 caracteres!")
-                .IsTrue(cnpj.Length == 14, "CNPJ", "O CNPJ da empresa deve conter 14 caracteres!")
-            );
-
-            if (IsValid)
-            {
-                Name = name;
-                CNPJ = cnpj;
-                Segment = segment;
-                CompanyHasShippers = new List<ShipperCompany>();
-            }
+        public void ChangeCompany(
+            string name,
+            string cnpj,
+            EnCompanySegment segment
+        )
+        {
+            Name = name;
+            CNPJ = cnpj;
+            Segment = segment;
         }
     }
 }

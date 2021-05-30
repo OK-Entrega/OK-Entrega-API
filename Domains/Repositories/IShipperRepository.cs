@@ -6,8 +6,9 @@ namespace Domains.Repositories
 {
     public interface IShipperRepository
     {
-        ICollection<Shipper> ReadAll(Guid companyId);
         Shipper Search(string email);
+        Shipper Search(Guid id);
         void Create(Shipper shipper);
+        void Update(Shipper shipper);
     }
 }

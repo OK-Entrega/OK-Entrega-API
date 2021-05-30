@@ -22,5 +22,10 @@ namespace Domains.Entities
             CompanyId = companyId;
             ShipperRole = shipperRole;
         }
+
+        public void ChangeShipperRole(EnShipperRole shipperRole)
+        {
+            ShipperRole = shipperRole;
+        }
     }
 }

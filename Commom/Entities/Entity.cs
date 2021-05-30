@@ -3,7 +3,7 @@ using System;
 
 namespace Commom.Entities
 {
-    public abstract class Entity : Notifiable<Notification>
+    public abstract class Entity
     {
         public Guid Id { get; private set; }
         public DateTime CreatedAt { get; private set; }

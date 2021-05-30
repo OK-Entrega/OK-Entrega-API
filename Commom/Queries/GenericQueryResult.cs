@@ -3,16 +3,17 @@
     public class GenericQueryResult : IQueryResult
     {
         public int StatusCode { get; set; }
-        public bool Sucesso { get; set; }
-        public string Mensagem { get; set; }
-        public object Dados { get; set; }
+        public object Status { get; set; }
+        public bool Success { get; set; }
+        public string Message { get; set; }
+        public object Data { get; set; }
 
-        public GenericQueryResult(int statusCode, string mensagem, object dados)
+        public GenericQueryResult(int statusCode, string message, object data)
         {
             StatusCode = statusCode;
-            Sucesso = statusCode == 200;
-            Mensagem = mensagem;
-            Dados = dados;
+            Success = statusCode == 200;
+            Message = message;
+            Data = data;
         }
     }
 }
