@@ -2,6 +2,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -21,7 +24,15 @@ namespace API.Controllers
 
         [HttpPost("create-occurrence")]
         [Authorize]
-        public async Task<ObjectResult> CreateOccurrence([FromBody] CreateOccurrenceRequest request)
+        public async Task<ObjectResult> CreateOccurrence([FromForm] CreateOccurrenceRequest request)
+        {
+            request.UserId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return await Result(request);
+        }
+
+        [HttpPost("finish-order")]
+        [Authorize]
+        public async Task<ObjectResult> FinishOrder([FromBody] FinishOrderRequest request)
         {
             return await Result(request);
         }

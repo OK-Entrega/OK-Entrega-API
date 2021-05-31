@@ -1,4 +1,5 @@
 ﻿using Commom.Commands;
+using Commom.Services;
 using Domains.Commands.Requests.OrderRequests;
 using Domains.Entities;
 using Domains.Repositories;
@@ -32,9 +33,27 @@ namespace Domains.Handlers.Commands.OrderHandlers
                 if (order.FinishOrder != null)
                     return Task.FromResult(new GenericCommandResult(400, "Essa entrega já foi finalizada!", null));
 
-                var delivererId = _userRepository.Search(request.UserId).Deliverer.Id;
+                var deliverer = _userRepository.Search(request.UserId).Deliverer;
 
-                var occurrenceOrder = new OccurrenceOrder(request.ReasonOccurrence, delivererId, request.LatitudeDeliverer, request.LongitudeDeliverer, order.Id, request.UrlsEvidences);
+                if(deliverer == null)
+                    return Task.FromResult(new GenericCommandResult(400, "Esse entregador não existe!", null));
+
+                string evidences= "";
+
+                if(request.Evidences != null)
+                {
+                    foreach (var evidence in request.Evidences)
+                    {
+                        var filePath = UploadServices.Image(evidence);
+                        evidences += filePath + " ";
+                    }
+                }
+
+                evidences = evidences.Trim();
+
+                var occurrenceOrder = new OccurrenceOrder(request.ReasonOccurrence, deliverer.Id, request.LatitudeDeliverer, request.LongitudeDeliverer, order.Id, evidences);
+
+                _orderRepository.CreateOccurrence(occurrenceOrder);
 
                 return Task.FromResult(new GenericCommandResult(200, "Ocorrência cadastrada com sucesso!", null));
             }

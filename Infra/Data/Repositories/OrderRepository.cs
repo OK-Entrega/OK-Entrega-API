@@ -3,6 +3,7 @@ using Domains.Repositories;
 using Infra.Data.Contexts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Infra.Data.Repositories
 {
@@ -15,36 +16,54 @@ namespace Infra.Data.Repositories
             _context = context;
         }
 
-        public void Create(Order order)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ICollection<Order> Search(ICollection<Guid> ids)
-        {
-            //include finish order
-            throw new NotImplementedException();
-        }
-
         public Order Search(Guid id)
         {
-            //include finish order
-            throw new NotImplementedException();
+            return _context
+                .Orders
+                .Find(id);
         }
 
         public Order Search(string accessKey)
         {
-            throw new NotImplementedException();
+            return _context
+                .Orders
+                .FirstOrDefault(o => o.AccessKey == accessKey);
         }
 
-        public void Update(Order order)
+        public void Create(Order order)
         {
-            throw new NotImplementedException();
+            _context
+                .Orders
+                .Add(order);
+
+            _context
+                .SaveChanges();
+        }
+
+        public void CreateOccurrence(OccurrenceOrder occurrenceOrder)
+        {
+            _context
+                .Occurrences
+                .Add(occurrenceOrder);
+
+            _context
+                .SaveChanges();
+        }
+
+        public void Finish(FinishOrder finishOrder)
+        {
+            _context
+                .FinishedOrders
+                .Add(finishOrder);
+
+            _context
+                .SaveChanges();
         }
 
         public void Delete(Order order)
         {
-            throw new NotImplementedException();
+            _context.Orders.Remove(order);
+            _context.SaveChanges();
         }
     }
 }

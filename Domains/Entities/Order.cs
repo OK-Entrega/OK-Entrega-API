@@ -31,6 +31,8 @@ namespace Domains.Entities
         //Dados da transportadora
         public string CarrierName { get; private set; }
         public string CarrierCNPJ { get; private set; }
+        public EnVehicleType VehicleType { get; private set; }
+        public string VehiclePlate { get; private set; }
 
         //Informações de destino
         public string DestinationCEP { get; private set; }
@@ -89,46 +91,51 @@ namespace Domains.Entities
             string destinationCity,
             string carrierName,
             string carrierCNPJ,
+            EnVehicleType vehicleType,
+            string vehiclePlate,
             decimal totalValue,
             decimal weight
         )
         {
             XMLPath = xmlPath;
-            Series = series.Trim().Replace(".", "");
-            Number = number.Trim().Replace(".", "");
+            Series = series;
+            Number = number;
             NumericCode = numericCode;
-            AccessKey = $"{ufIsserCode}{issuedAt.Year.ToString().Substring(2, 2)}{issuedAt.Month}{company.CNPJ}{modelNFE}{series}{number}{issueType}{numericCode}{verifyingDigit}";
-            NatureOperation = natureOperation.Trim();
+            ModelNFE = modelNFE;
+            AccessKey = $"{ufIsserCode}{issuedAt.Year.ToString().Substring(2, 2)}{issuedAt.ToString("MM")}{company.CNPJ}{(int)modelNFE}{series}{number}{(int)issueType}{numericCode}{verifyingDigit}";
+            NatureOperation = natureOperation;
             IssueType = issueType;
-            CFOP = cfop.Trim().Replace(".", "");
-            NumericCode = numericCode.Trim();
+            CFOP = cfop;
+            NumericCode = numericCode;
             TotalValue = Math.Round(totalValue, 2);
             Weight = Math.Round(weight, 2);
             IssuedAt = issuedAt;
             DispatchedAt = dispatchedAt;
-            ReceiverName = receiverName.Trim();
-            ReceiverCNPJ = receiverCNPJ.Trim().Replace("-", "").Replace(".", "").Replace("/", "");
-            CarrierName = carrierName.Trim();
-            CarrierCNPJ = carrierCNPJ.Trim().Replace("-", "").Replace(".", "").Replace("/", "");
+            ReceiverName = receiverName;
+            ReceiverCNPJ = receiverCNPJ;
+            CarrierName = carrierName;
+            CarrierCNPJ = carrierCNPJ;
+            VehicleType = vehicleType;
+            VehiclePlate = VehicleType == EnVehicleType.Ship ? null : vehiclePlate;
             Company = company;
-            UFIssuerCode = ufIsserCode.Trim();
-            VerifyingDigit = verifyingDigit.Trim();
+            UFIssuerCode = ufIsserCode;
+            VerifyingDigit = verifyingDigit;
 
-            DestinationCEP = destinationCEP.Trim().Replace("-", "");
-            DestinationAddress = destinationAddress.Trim();
-            DestinationNumber = destinationNumber.Trim();
-            DestinationComplement = destinationComplement.Trim();
-            DestinationDistrict = destinationDistrict.Trim();
-            DestinationUF = destinationUF.Trim();
-            DestinationCity = destinationCity.Trim();
+            DestinationCEP = destinationCEP;
+            DestinationAddress = destinationAddress;
+            DestinationNumber = destinationNumber;
+            DestinationComplement = destinationComplement;
+            DestinationDistrict = destinationDistrict;
+            DestinationUF = destinationUF;
+            DestinationCity = destinationCity;
 
-            IssuerCEP = issuerCEP.Trim().Replace("-", "");
-            IssuerAddress = issuerAddress.Trim();
-            IssuerNumber = issuerNumber.Trim();
-            IssuerComplement = issuerComplement.Trim();
-            IssuerDistrict = issuerDistrict.Trim();
-            IssuerUF = issuerUF.Trim();
-            IssuerCity = issuerCity.Trim();
+            IssuerCEP = issuerCEP;
+            IssuerAddress = issuerAddress;
+            IssuerNumber = issuerNumber;
+            IssuerComplement = issuerComplement;
+            IssuerDistrict = issuerDistrict;
+            IssuerUF = issuerUF;
+            IssuerCity = issuerCity;
 
             Occurrences = new List<OccurrenceOrder>();
         }

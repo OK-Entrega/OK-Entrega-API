@@ -75,21 +75,21 @@
             <det nItem='1'>
                 <prod>
                     <!--CFOP-->
-                    <CFOP></CFOP>
+                    <CFOP>CFOP</CFOP>
                 </prod>
             </det>
             <total>
                 <!--TotalValue-->
-                <valTot></valTot>
+                <valTot>0.00</valTot>
             </total>
             <transp>
                 <!--CarrierName-->
-                <xNome></xNome>
+                <xNome>asdadad</xNome>
                 <!--CarrierCNPJ-->
-                <CNPJ></CNPJ>
+                <CNPJ>sadasddas</CNPJ>
                 <vol>
                     <!--Weight-->
-                    <pesoB>0.000</pesoB>
+                    <pesoB>0.00</pesoB>
                 </vol>
             </transp>
         </infNFe>

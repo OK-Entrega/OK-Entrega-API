@@ -1,4 +1,5 @@
 ﻿using Commom.Commands;
+using Commom.Enum;
 using Commom.Responses;
 using Commom.Services;
 using Domains.Commands.Requests.OrderRequests;
@@ -53,7 +54,7 @@ namespace Domains.Handlers.Commands.OrderHandlers
 
                     Console.WriteLine(a.GetType());
 
-                    var order = new Order(filePath, note.ide.cUF, note.ide.dEmi.ToString(), company, note.ide.mod, note.ide.serie, note.ide.nNF, note.ide.tpEmis, note.ide.cNF, note.ide.cDV, note.ide.natOp, note.det.prod.CFOP, note.ide.dSaiEnt, note.emit.enderEmit.CEP, note.emit.enderEmit.xLgr, note.emit.enderEmit.nro, note.emit.enderEmit.xCpl, note.emit.enderEmit.xBairro, note.emit.enderEmit.UF, note.emit.enderEmit.xMun, note.dest.xNome, note.dest.CNPJ, note.dest.enderDest.CEP, note.dest.enderDest.xLgr, note.dest.enderDest.nro, note.dest.enderDest.xCpl, note.dest.enderDest.xBairro, note.dest.enderDest.UF, note.dest.enderDest.xMun, note.transp.xNome, note.transp.CNPJ, note.total.valTot, note.transp.vol.pesoB);
+                    var order = new Order(filePath, note.ide.cUF.ToString(), DateTime.Parse(note.ide.dEmi.ToString()), company, (EnModelNFE)(int)note.ide.mod, note.ide.serie.ToString(), note.ide.nNF.ToString(), (EnIssueType)(int)note.ide.tpEmis, note.ide.cNF.ToString(), note.ide.cDV.ToString(), note.ide.natOp.ToString(), note.det.prod.CFOP.ToString(), DateTime.Parse(note.ide.dSaiEnt.ToString()), note.emit.enderEmit.CEP.ToString(), note.emit.enderEmit.xLgr.ToString(), note.emit.enderEmit.nro.ToString(), note.emit.enderEmit.xCpl.ToString(), note.emit.enderEmit.xBairro.ToString(), note.emit.enderEmit.UF.ToString(), note.emit.enderEmit.xMun.ToString(), note.dest.xNome.ToString(), note.dest.CNPJ.ToString(), note.dest.enderDest.CEP.ToString(), note.dest.enderDest.xLgr.ToString(), note.dest.enderDest.nro.ToString(), note.dest.enderDest.xCpl.ToString(), note.dest.enderDest.xBairro.ToString(), note.dest.enderDest.UF.ToString(), note.dest.enderDest.xMun.ToString(), note.transp.xNome.ToString(), note.transp.CNPJ.ToString(), (EnVehicleType)(int) note.transp.tpVei, note.transp.plVei.ToString(), Convert.ToDecimal(note.total.valTot), Convert.ToDecimal(note.transp.vol.pesoB));
 
                     if (_orderRepository.Search(order.AccessKey) != null)
                         errors.Add(new Alert($"A nota {order.AccessKey} já existe!"));

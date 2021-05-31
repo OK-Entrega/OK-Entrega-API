@@ -26,14 +26,11 @@ namespace Domains.Handlers.Commands.OrderHandlers
                 if (request.OrdersIds == null)
                     return Task.FromResult(new GenericCommandResult(400, "Nenhuma entrega a ser deletada!", null));
 
-                var orders = _orderRepository.Search(request.OrdersIds);
-
-                if (orders == null)
-                    return Task.FromResult(new GenericCommandResult(400, "Essas entregas não existem!", null));
-
-                foreach (var order in orders)
+                foreach (var orderId in request.OrdersIds)
                 {
-                    _orderRepository.Delete(order);
+                    var order = _orderRepository.Search(orderId);
+                    if(order != null)
+                        _orderRepository.Delete(order);
                 }
 
                 return Task.FromResult(new GenericCommandResult(200, "Entregas deletadas com sucesso!", null));

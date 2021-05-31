@@ -9,6 +9,24 @@
 		<NoWarn>$(NoWarn);1591</NoWarn>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-109c4ec0b6ef4994a0d6994ce824c1ba.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-1d6d3033e8fa415ebb50cda659aa67e2.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-21ff626114ea4b5e8d42d29fedc9ebbb.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-5062d2a7b93a4e87a8554bba80c334b9.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-55a70445560345f8b01156073997d701.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-5fce015fbf5a4db7ac49823fdb167a76.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-6831acf1517d4ebeb9ebd2cd052ddd2e.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-6df6624d34f447d994f8bb56e418cfed.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-7b24384bdedb4ef38bcf909dd0058e12.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-7d527bed33d34547a7004beb1e4565d4.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-7dac14e7db5e4952a4e544c6fbaba138.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-85df2bb1c888495c9b98e46d52d03ca7.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-aa53591fa91840509be572bceadd7dda.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-d747b774ed8d4fdf9da61127fedd1848.xml" />
+	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-eeb209e7ba4b485ea2859ae45e69b95f.xml" />
+	</ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
@@ -29,6 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Uploads\Image\" />
     <Folder Include="wwwroot\Uploads\XML\" />
   </ItemGroup>
 
