@@ -1,4 +1,5 @@
 ﻿using Domains.Entities;
+using Infra.Data.Map;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Data.Contexts
@@ -13,11 +14,14 @@ namespace Infra.Data.Contexts
         public DbSet<Company> Companies { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<FinishOrder> FinishedOrders { get; set; }
+        public DbSet<Voucher> Vouchers { get; set; }
         public DbSet<OccurrenceOrder> Occurrences { get; set; }
         public DbSet<Deliverer> Deliverers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new OrderMap());
+
             modelBuilder
                 .Entity<Order>()
                 .Property(o => o.TotalValue)
