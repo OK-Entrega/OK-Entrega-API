@@ -10,6 +10,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Index1.cshtml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="Index.cshtml" />
+	  <Content Remove="Index1.cshtml" />
 	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-109c4ec0b6ef4994a0d6994ce824c1ba.xml" />
 	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-1d6d3033e8fa415ebb50cda659aa67e2.xml" />
 	  <Content Remove="wwwroot\Uploads\XML\OK-Entrega-XML-21ff626114ea4b5e8d42d29fedc9ebbb.xml" />

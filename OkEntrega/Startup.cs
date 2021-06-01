@@ -1,3 +1,7 @@
+using Commom.Services.PDFServices.Interfaces;
+using Commom.Services.PDFServices.Providers;
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using Domains.Repositories;
 using Infra.Data.Contexts;
 using Infra.Data.Repositories;
@@ -36,7 +40,7 @@ namespace OkEntrega
                     policy.AllowAnyHeader()
                         .AllowAnyMethod()
                         .WithOrigins(
-                            Configuration.GetSection("Origins")["WebSystem"], 
+                            Configuration.GetSection("Origins")["WebSystem"],
                             Configuration.GetSection("Origins")["Mobile"]
                         )
                         .AllowCredentials();
@@ -65,6 +69,12 @@ namespace OkEntrega
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("OKEntrega-b71e507ae8f44b4396530166279942af"))
                     };
                 });
+
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+            services.AddTransient<IRazorPageRenderer, RazorPageRendererServices>();
+            services.AddTransient<IPDFGenerator, PDFGeneratorServices>();
+
+            services.AddRazorPages();
 
             services.AddSwaggerGen(c =>
             {

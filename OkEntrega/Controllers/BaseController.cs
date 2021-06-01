@@ -10,9 +10,9 @@ namespace API.Controllers
     [ApiController]
     public class BaseController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        protected readonly IMediator _mediator;
 
-        public BaseController([FromServices] IMediator mediator)
+        protected BaseController([FromServices] IMediator mediator)
         {
             _mediator = mediator;
         }

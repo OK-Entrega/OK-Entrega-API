@@ -3,6 +3,7 @@ using Commom.Enum;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Domains.Commands.Requests.OrderRequests
 {
@@ -11,6 +12,7 @@ namespace Domains.Commands.Requests.OrderRequests
         public EnFinishType FinishType { get; set; }
         public DateTime FinishedAt { get; set; }
         public EnReasonDevolution? ReasonDevolution { get; set; }
+        [JsonIgnore]
         public Guid UserId { get; set; }
         public string AccessKey { get; set; }
         public ICollection<IFormFile> Evidences { get; set; }
