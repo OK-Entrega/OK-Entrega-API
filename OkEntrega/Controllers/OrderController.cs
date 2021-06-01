@@ -41,7 +41,7 @@ namespace API.Controllers
 
         [HttpPost("finish-order")]
         [Authorize]
-        public async Task<ObjectResult> FinishOrder([FromBody] FinishOrderRequest request)
+        public async Task<ObjectResult> FinishOrder([FromForm] FinishOrderRequest request)
         {
             request.UserId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
             return await Result(request);

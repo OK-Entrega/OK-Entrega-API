@@ -5,6 +5,7 @@ using Domains.Entities;
 using Domains.Repositories;
 using MediatR;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -42,7 +43,7 @@ namespace Domains.Handlers.Commands.OrderHandlers
 
                 if(request.Evidences != null)
                 {
-                    foreach (var evidence in request.Evidences)
+                    foreach (var evidence in request.Evidences.Take(5))
                     {
                         var filePath = UploadServices.Image(evidence);
                         evidences += filePath + " ";

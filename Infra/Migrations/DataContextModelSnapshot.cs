@@ -247,7 +247,8 @@ namespace Infra.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Series")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(3)");
 
                     b.Property<decimal>("TotalValue")
                         .HasColumnType("DECIMAL");
@@ -391,7 +392,7 @@ namespace Infra.Migrations
                     b.HasIndex("FinishOrderId")
                         .IsUnique();
 
-                    b.ToTable("Voucher");
+                    b.ToTable("Vouchers");
                 });
 
             modelBuilder.Entity("Domains.Entities.Deliverer", b =>

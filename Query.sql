@@ -8,6 +8,7 @@ SELECT * FROM Orders;
 SELECT * FROM FinishedOrders;
 SELECT * FROM Occurrences;
 SELECT * FROM Deliverers;
+SELECT * FROM Vouchers;
 
 INSERT INTO Users VALUES
 (NEWID(), 'Entregador', '$2a$11$OMFkZfVgWJprLzVIDbqypebeIM38FPScpecjSw1Vd2HM/NVSNy53a', GETDATE(), 1);
