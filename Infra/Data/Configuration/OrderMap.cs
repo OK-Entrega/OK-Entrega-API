@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infra.Data.Map
+namespace Infra.Data.Configuration
 {
     public class OrderMap : IEntityTypeConfiguration<Order>
     {

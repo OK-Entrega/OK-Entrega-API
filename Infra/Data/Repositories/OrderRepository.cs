@@ -1,6 +1,7 @@
 ﻿using Domains.Entities;
 using Domains.Repositories;
 using Infra.Data.Contexts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +21,15 @@ namespace Infra.Data.Repositories
         {
             return _context
                 .Orders
-                .Find(id);
+                .Include(o => o.FinishOrder)
+                .FirstOrDefault(o => o.Id == id);
         }
 
         public Order Search(string accessKey)
         {
             return _context
                 .Orders
+                .Include(o => o.FinishOrder)
                 .FirstOrDefault(o => o.AccessKey == accessKey);
         }
 
@@ -62,8 +65,12 @@ namespace Infra.Data.Repositories
 
         public void Delete(Order order)
         {
-            _context.Orders.Remove(order);
-            _context.SaveChanges();
+            _context
+                .Orders
+                .Remove(order);
+
+            _context
+                .SaveChanges();
         }
     }
 }

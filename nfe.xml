@@ -22,7 +22,7 @@
                 <!--UFIssuerCode-->
                 <cUF>53</cUF> <!--2 dígitos-->
                 <!--VerifyingDigit-->
-                <cDV>1</cDV> <!--1 dígito-->
+                <cDV>3</cDV> <!--1 dígito-->
             </ide>
 
             <emit>

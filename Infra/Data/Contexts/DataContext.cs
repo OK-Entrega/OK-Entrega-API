@@ -1,5 +1,5 @@
 ﻿using Domains.Entities;
-using Infra.Data.Map;
+using Infra.Data.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Data.Contexts
@@ -21,16 +21,7 @@ namespace Infra.Data.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new OrderMap());
-
-            modelBuilder
-                .Entity<Order>()
-                .Property(o => o.TotalValue)
-                .HasColumnType("DECIMAL");
-
-            modelBuilder
-                .Entity<Order>()
-                .Property(o => o.Weight)
-                .HasColumnType("DECIMAL");
+            modelBuilder.ApplyConfiguration(new DelivererMap());
         }
     }
 }
