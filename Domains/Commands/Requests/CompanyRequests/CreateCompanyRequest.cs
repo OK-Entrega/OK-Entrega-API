@@ -1,6 +1,7 @@
 ﻿using Commom.Commands;
 using Commom.Enum;
 using Flunt.Validations;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Text.Json.Serialization;
 
@@ -13,18 +14,23 @@ namespace Domains.Commands.Requests.CompanyRequests
         [JsonIgnore]
         public Guid UserId { get; set; }
         public EnCompanySegment Segment { get; set; }
+        public IFormFile Logo { get; set; }
+
+        public CreateCompanyRequest(){}
 
         public CreateCompanyRequest(
             string name, 
             string cnpj,
             Guid userId,
-            EnCompanySegment segment
+            EnCompanySegment segment,
+            IFormFile logo
         )
         {
             Name = name.Trim();
             CNPJ = cnpj.Trim().Replace("-", "").Replace(".", "").Replace("/", "");
             UserId = userId;
             Segment = segment;
+            Logo = logo;
         }
 
         public override void Validate()

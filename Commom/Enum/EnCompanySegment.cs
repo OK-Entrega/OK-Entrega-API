@@ -4,17 +4,21 @@ namespace Commom.Enum
 {
     public enum EnCompanySegment
     {
-        [Description("Comida e bebida")]
-        FoodAndDrink = 0,
         [Description("Roupa e calçado")]
-        ClothingAndFootwear = 1,
+        ClothingAndFootwear = 0,
+        [Description("Finanças")]
+        Finances = 1,
+        [Description("Comida e bebida")]
+        FoodAndDrink = 2,
         [Description("Saúde")]
-        Health = 2,
+        Health = 3,
+        [Description("Automobilismo")]
+        Motorsport = 4,
         [Description("Venda e marketing")]
-        SaleAndMarketing = 3,
+        SaleAndMarketing = 5,
         [Description("Tecnologia")]
-        Technology = 4,
+        Technology = 6,
         [Description("Outro")]
-        Other = 5
+        Other = 7
     }
 }

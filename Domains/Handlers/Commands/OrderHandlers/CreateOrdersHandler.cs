@@ -41,6 +41,9 @@ namespace Domains.Handlers.Commands.OrderHandlers
 
                 var company = _companyRepository.Search(request.CompanyId);
 
+                if (company == null)
+                    return Task.FromResult(new GenericCommandResult(400, "Essa empresa não existe!", null));
+
                 foreach (var file in request.Files)
                 {
                     var filePath = UploadServices.Xml(file);

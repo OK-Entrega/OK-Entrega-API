@@ -1,5 +1,6 @@
 ﻿using Commom.Commands;
 using Commom.Enum;
+using Commom.Services;
 using Domains.Commands.Requests.CompanyRequests;
 using Domains.Entities;
 using Domains.Repositories;
@@ -35,10 +36,14 @@ namespace Domains.Handlers.Commands.CompanyHandlers
                 while (_companyRepository.SearchByCode(code) != null)
                     code = GenerateCode();
 
-                var company = new Company(request.Name, request.CNPJ, code, request.Segment);
+                string urlLogo = null;
+
+                if(request.Logo != null)
+                    urlLogo = UploadServices.Image(request.Logo);
+
+                var company = new Company(request.Name, request.CNPJ, code, request.Segment, urlLogo);
                 var shipperCompany = new ShipperCompany(user.Shipper.Id, company.Id, EnShipperRole.Creator);
                 company.CompanyHasShippers.Add(shipperCompany);
-
 
                 _companyRepository.Create(company);
 

@@ -6,6 +6,7 @@ namespace Domains.Repositories
 {
     public interface ICompanyRepository
     {
+        ICollection<Company> Read(Guid userId);
         Company Search(Guid id);
         Company Search(string cnpj);
         Company SearchByCode(string code);

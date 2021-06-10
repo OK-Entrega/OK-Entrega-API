@@ -3,6 +3,7 @@ using Domains.Repositories;
 using Infra.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Infra.Data.Repositories
@@ -14,6 +15,17 @@ namespace Infra.Data.Repositories
         public CompanyRepository(DataContext context)
         {
             _context = context;
+        }
+
+        public ICollection<Company> Read(Guid userId)
+        {
+            return
+                _context
+                .Companies
+                .Include(c => c.CompanyHasShippers)
+                .ThenInclude(cs => cs.Shipper)
+                .Where(c => c.CompanyHasShippers.Any(cs => cs.Shipper.UserId == userId))
+                .ToList();
         }
 
         public Company Search(Guid companyId)

@@ -2,6 +2,7 @@
 using Commom.Services.PDFServices.Interfaces;
 using Domains.Commands.Requests.OrderRequests;
 using Domains.Entities;
+using Domains.Queries.Requests.OrderRequests;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,13 @@ namespace API.Controllers
         public OrderController([FromServices] IMediator mediator, IPDFGenerator pdfGenerator) : base(mediator) 
         {
             _pdfGenerator = pdfGenerator;
+        }
+
+        [HttpGet("pending")]
+        [Authorize]
+        public async Task<ObjectResult> Pending([FromQuery] GetPendingOrdersRequest request)
+        {
+            return await Result(request);
         }
 
         [HttpPost("create-orders-with-xml")]

@@ -20,8 +20,8 @@ namespace Infra.Data.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new OrderMap());
-            modelBuilder.ApplyConfiguration(new DelivererMap());
+            //modelBuilder.ApplyConfiguration(new OrderMap());
+            //modelBuilder.ApplyConfiguration(new DelivererMap());
         }
     }
 }

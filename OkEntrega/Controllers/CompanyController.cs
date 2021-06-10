@@ -1,4 +1,5 @@
 ﻿using Domains.Commands.Requests.CompanyRequests;
+using Domains.Queries.Requests.CompanyRequests;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,18 @@ namespace API.Controllers
     {
         public CompanyController(IMediator mediator) : base(mediator) { }
 
+        [HttpGet("get-mine")]
+        [Authorize]
+        public async Task<ObjectResult> GetMine()
+        {
+	        var request = new GetMyCompaniesRequest();
+            request.UserId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return await Result(request);
+        }
+
         [HttpPost("create-company")]
         [Authorize]
-        public async Task<ObjectResult> CreateCompany([FromBody] CreateCompanyRequest request)
+        public async Task<ObjectResult> CreateCompany([FromForm] CreateCompanyRequest request)
         {
             request.UserId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
             return await Result(request);

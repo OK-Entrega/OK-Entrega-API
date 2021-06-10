@@ -38,7 +38,7 @@ namespace Domains.Handlers.Commands.UserHandlers
                     if(!PasswordServices.Validate(request.Password, shipper.User.Password))
                         return Task.FromResult(new GenericCommandResult(400, "Senha incorreta!", null));
 
-                    var token = JWTServices.Generate(shipper.User.Name, "Shipper", shipper.UserId, 120);
+                    var token = JWTServices.Generate(shipper.User.Name, "Shipper", shipper.UserId, 44640);
 
                     return Task.FromResult(new GenericCommandResult(200, $"Bem vindo novamente, {shipper.User.Name}!", token));
                 }
@@ -54,7 +54,7 @@ namespace Domains.Handlers.Commands.UserHandlers
                     if (!PasswordServices.Validate(request.Password, deliverer.User.Password))
                         return Task.FromResult(new GenericCommandResult(400, "Senha incorreta!", null));
                     
-                    var token = JWTServices.Generate(deliverer.User.Name, "Shipper", deliverer.UserId, 120);
+                    var token = JWTServices.Generate(deliverer.User.Name, "Shipper", deliverer.UserId, 44640);
 
                     return Task.FromResult(new GenericCommandResult(200, $"Bem vindo novamente, {deliverer.User.Name}!", token));
                 }

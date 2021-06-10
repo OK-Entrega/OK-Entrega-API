@@ -7,7 +7,7 @@ namespace Domains.Commands.Requests.OrderRequests
 {
     public class CreateOrdersRequest : CommandRequest
     {
-        public ICollection<IFormFile> Files { get; set; }
+        public List<IFormFile> Files { get; set; }
         public Guid CompanyId { get; set; }
     }
 }

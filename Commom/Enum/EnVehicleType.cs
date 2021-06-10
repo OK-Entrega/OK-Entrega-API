@@ -8,10 +8,10 @@ namespace Commom.Enum
         Truck = 0,
         [Description("Furgão")]
         Van = 1,
-        [Description("Navio")]
-        Ship = 2,
         [Description("Moto")]
-        Motorcycle = 3,
+        Motorcycle = 2,
+        [Description("Navio")]
+        Ship = 3,
         [Description("Outro")]
         Other = 4
     }

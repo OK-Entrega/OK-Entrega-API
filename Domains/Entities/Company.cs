@@ -13,6 +13,7 @@ namespace Domains.Entities
         public EnCompanySegment Segment { get; private set; }
         public ICollection<ShipperCompany> CompanyHasShippers { get; private set; }
         public ICollection<Order> Orders { get; private set; }
+        public string UrlLogo { get; private set; }
 
         public Company() { }
 
@@ -20,13 +21,15 @@ namespace Domains.Entities
             string name,
             string cnpj,
             string code,
-            EnCompanySegment segment
+            EnCompanySegment segment,
+            string urlLogo
         )
         {
             Name = name;
             CNPJ = cnpj;
             Code = code;
             Segment = segment;
+            UrlLogo = urlLogo;
             CompanyHasShippers = new List<ShipperCompany>();
         }
 

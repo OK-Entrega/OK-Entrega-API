@@ -17,11 +17,21 @@ namespace Infra.Data.Repositories
             _context = context;
         }
 
+        public IQueryable<Order> Read(Guid companyId)
+        {
+            return _context
+                .Orders
+                .Include(o => o.FinishOrder)
+                .ThenInclude(fo => fo.Voucher)
+                .Where(o => o.CompanyId == companyId);
+        }
+
         public Order Search(Guid id)
         {
             return _context
                 .Orders
                 .Include(o => o.FinishOrder)
+                .ThenInclude(fo => fo.Voucher)
                 .FirstOrDefault(o => o.Id == id);
         }
 
@@ -30,6 +40,7 @@ namespace Infra.Data.Repositories
             return _context
                 .Orders
                 .Include(o => o.FinishOrder)
+                .ThenInclude(fo => fo.Voucher)
                 .FirstOrDefault(o => o.AccessKey == accessKey);
         }
 

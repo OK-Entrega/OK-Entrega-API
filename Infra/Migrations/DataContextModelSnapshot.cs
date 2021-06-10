@@ -40,6 +40,9 @@ namespace Infra.Migrations
                     b.Property<int>("Segment")
                         .HasColumnType("int");
 
+                    b.Property<string>("UrlLogo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
@@ -247,11 +250,10 @@ namespace Infra.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Series")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(3)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalValue")
-                        .HasColumnType("DECIMAL");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UFIssuerCode")
                         .HasColumnType("nvarchar(max)");
@@ -266,7 +268,7 @@ namespace Infra.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("DECIMAL");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("XMLPath")
                         .HasColumnType("nvarchar(max)");

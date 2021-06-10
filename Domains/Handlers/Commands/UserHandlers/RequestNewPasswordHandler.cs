@@ -37,7 +37,7 @@ namespace Domains.Handlers.Commands.UserHandlers
 
                     var jwt = JWTServices.Generate(shipper.User.Name, "Shipper", shipper.UserId, 5);
 
-                    var link = $"https://okentrega.com.br/i-forgot-my-password/change/{jwt}";
+                    var link = $"http://localhost:3000/i-forgot-my-password/change-password/{jwt}";
 
                     MessageServices.SendEmail(shipper.Email, $"Olá, {shipper.User.Name}!", $"<p style='color: black; font-weight: bold'>Olá, {shipper.User.Name}!<br>Ao clicar no botão abaixo, você será redirecionado para uma página da web onde poderá redefinir sua senha com segurança! <br>(Este link é válido por apenas 5 minutos.)</p><br><a href='{link}'><button style='display: block; margin: auto; border-color: #2ecc71; background: #2ecc71; color: white; font-weight: bold; text-decoration: none; cursor: pointer; box-shadow: none'>Ir</button></a>");
 
@@ -71,7 +71,7 @@ namespace Domains.Handlers.Commands.UserHandlers
 
         private static string GeneratePassword()
         {
-            string caracters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@!#$%&";
+            string caracters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             string password = "";
 
             Random random = new Random();

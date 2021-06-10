@@ -1,5 +1,6 @@
 ﻿using Domains.Entities;
 using System;
+using System.Linq;
 
 namespace Domains.Repositories
 {
@@ -7,6 +8,7 @@ namespace Domains.Repositories
     {
         Order Search(Guid id);
         Order Search(string accessKey);
+        IQueryable<Order> Read(Guid companyId);
         void Create(Order order);
         void CreateOccurrence(OccurrenceOrder occurrence);
         void Finish(FinishOrder finishOrder);
