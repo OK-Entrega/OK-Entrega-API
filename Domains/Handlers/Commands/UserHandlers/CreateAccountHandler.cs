@@ -55,7 +55,7 @@ namespace Domains.Handlers.Commands.UserHandlers
 
                     _delivererRepository.Create(deliverer);
 
-                    MessageServices.SendSMS(deliverer.CellphoneNumber, $"Olá, {user.Name}! Seja muito bem-vindo ao OK Entrega! Antes de começar a usufruir de nossos serviços, precisamos verificar se o seu número de celular é válido. Para isso, basta inserir esses 4 dígitos no seu aplicativo e então você estará livre para desfrutar de nossa plataforma! (Sua conta será deletada de nossa base dentro de 1 dia se seu número de celular não for verificado).");
+                    //MessageServices.SendSMS(deliverer.CellphoneNumber, $"Olá, {user.Name}! Seja muito bem-vindo ao OK Entrega! Antes de começar a usufruir de nossos serviços, precisamos verificar se o seu número de celular é válido. Para isso, basta inserir esses 4 dígitos no seu aplicativo e então você estará livre para desfrutar de nossa plataforma! (Sua conta será deletada de nossa base dentro de 1 dia se seu número de celular não for verificado).");
 
                     return Task.FromResult(new GenericCommandResult(200, $"Olá, {user.Name}. Um SMS com mais instruções será enviado a você!", deliverer.Id));
                 }

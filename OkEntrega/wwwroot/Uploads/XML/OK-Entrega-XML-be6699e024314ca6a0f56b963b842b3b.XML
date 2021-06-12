@@ -4,96 +4,96 @@
         <infNFe>
             <ide>
                 <!--ModelNFE-->
-                <mod>55</mod> <!--2 dígitos-->
+                <mod>55</mod> <!--2 dígitos--> <!--Não mexer-->
                 <!--Series-->
-                <serie>027</serie> <!--3 dígitos-->
+                <serie>029</serie> <!--3 dígitos-->
                 <!--Number-->
-                <nNF>166000000</nNF> <!--9 dígitos-->
+                <nNF>222000000</nNF> <!--9 dígitos-->
                 <!--NatureOperation-->
-                <natOp>Venda de mercadoria</natOp> <!--30 dígitos-->
+                <natOp>Venda de mercadoria</natOp> <!--30 dígitos--> <!--Não mexer-->
                 <!--EnIssueType-->
-                <tpEmis>4</tpEmis> <!--1 dígito-->
+                <tpEmis>4</tpEmis> <!--1 dígito--> <!--Não mexer-->
                 <!--NumericCode-->
-                <cNF>00000000</cNF> <!--8 dígitos-->
+                <cNF>22222222</cNF> <!--8 dígitos-->
                 <!--IssuedAt-->
-                <dEmi>2011-07-13T00:00:00</dEmi> <!--4 dígitos (AAMM)-->
+                <dEmi>2012-06-12T11:30:00</dEmi> <!--4 dígitos (AAMM)-->
                 <!--DispatchedAt-->
-                <dSaiEnt>2011-07-13T17:20:00:00</dSaiEnt>
+                <dSaiEnt>2012-06-14T17:20:00:00</dSaiEnt>
                 <!--UFIssuerCode-->
-                <cUF>53</cUF> <!--2 dígitos-->
+                <cUF>55</cUF> <!--2 dígitos-->
                 <!--VerifyingDigit-->
-                <cDV>3</cDV> <!--1 dígito-->
+                <cDV>2</cDV> <!--1 dígito-->
             </ide>
 
             <emit>
                 <!--Company.CNPJ-->
-                <CNPJ>07385111000102</CNPJ> <!--14 dígitos-->
+                <CNPJ>05735888000101</CNPJ> <!--14 dígitos-->
                 <!--Company.Name-->
-                <xNome>E-Sales Solucoes Oobj</xNome> <!--40 dígitos-->
+                <xNome> Z-vendas Papelaria Oobj</xNome> <!--40 dígitos-->
                 <enderEmit>
                     <!--IssuerCEP-->
-                    <CEP>12556000</CEP> <!--8 dígitos-->
+                    <CEP>63882000</CEP> <!--8 dígitos-->
                     <!--IssuerAdress-->
-                    <xLgr>AV. MEDEIROS</xLgr> 
+                    <xLgr>AV. Interlagos</xLgr> 
                     <!--IssuerNumber-->
-                    <nro>999</nro>
+                    <nro>222</nro>
                     <!--IssuerComplement-->
-                    <xCpl>A</xCpl>
+                    <xCpl>C</xCpl>
                     <!--IssuerDistrict-->
                     <xBairro>CENTRO</xBairro>
                     <!--IssuerUF-->
-                    <UF>SP</UF>
+                    <UF>Sp</UF>
                     <!--IssuerCity-->
-                    <xMun>SAO JOSE</xMun>
+                    <xMun>São Paulo</xMun>
                 </enderEmit>
             </emit>
 
             <dest>
                 <!--ReceiverName-->
-                <xNome>NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO</xNome> <!--40 dígitos-->
+                <xNome>Celular</xNome> <!--40 dígitos-->
                 <!--ReceiverCNPJ-->
-                <CNPJ>07385111000102</CNPJ> <!--14 dígitos-->
+                <CNPJ>05735888000101</CNPJ> <!--14 dígitos-->
 
                 <enderDest>
                     <!--DestinationCEP-->
-                    <CEP>12556000</CEP>
+                    <CEP>42773000</CEP>
                     <!--DestinationAdress-->
-                    <xLgr>AV. MEDEIROS</xLgr>
+                    <xLgr>AV. Interlagos</xLgr>
                     <!--DestinationNumber-->
-                    <nro>999</nro>
+                    <nro>222</nro>
                     <!--DestinationComplement-->
-                    <xCpl>A</xCpl>
+                    <xCpl>C</xCpl>
                     <!--DestinationDistrict-->
                     <xBairro>CENTRO</xBairro>
                     <!--DestinationUF-->
-                    <UF>SP</UF>
+                    <UF>MG</UF>
                     <!--DestinationCity-->
-                    <xMun>SAO JOSE</xMun>
+                    <xMun>Belo Horizonte</xMun>
                 </enderDest>
             </dest>
 
-            <det nItem='1'>
+            <det nItem='3'>
                 <prod>
                     <!--CFOP-->
-                    <CFOP>1234</CFOP> <!--4 dígitos-->
+                    <CFOP>3234</CFOP> <!--4 dígitos-->
                 </prod>
             </det>
             <total>
                 <!--TotalValue-->
-                <valTot>10.50</valTot>
+                <valTot>1500.80</valTot> <!--Com pontos-->
             </total>
             <transp>
                 <!--CarrierName-->
-                <xNome>Teste</xNome> <!--40 dígitos-->
+                <xNome>Teste02</xNome> <!--40 dígitos-->
                 <!--CarrierCNPJ-->
-                <CNPJ>12345678912345</CNPJ> <!--14 dígitos-->
+                <CNPJ>233654987328434</CNPJ> <!--14 dígitos-->
                 <!--VehicleType-->
-                <tpVei>0</tpVei>
+                <tpVei>2</tpVei> <!--0-Caminhão, 1-Van, 2-Moto, 3-Navio, 4-Outro--> 
                 <!--VehiclePlate-->
-                <plVei>ABC1D23</plVei> <!--7 dígitos-->
+                <plVei>BAC3D23</plVei> <!--7 dígitos-->
                 <vol>
                     <!--Weight-->
-                    <pesoB>50.70</pesoB>
+                    <pesoB>40.70</pesoB>
                 </vol>
             </transp>
         </infNFe>

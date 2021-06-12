@@ -21,6 +21,9 @@ namespace Infra.Data.Repositories
         {
             return _context
                 .Orders
+                .Include(o => o.Occurrences)
+                .ThenInclude(o => o.Deliverer)
+                .ThenInclude(o => o.User)
                 .Include(o => o.FinishOrder)
                 .ThenInclude(fo => fo.Voucher)
                 .Where(o => o.CompanyId == companyId);
@@ -30,6 +33,9 @@ namespace Infra.Data.Repositories
         {
             return _context
                 .Orders
+                .Include(o => o.Occurrences)
+                .ThenInclude(o => o.Deliverer)
+                .ThenInclude(o => o.User)
                 .Include(o => o.FinishOrder)
                 .ThenInclude(fo => fo.Voucher)
                 .FirstOrDefault(o => o.Id == id);
@@ -39,6 +45,9 @@ namespace Infra.Data.Repositories
         {
             return _context
                 .Orders
+                .Include(o => o.Occurrences)
+                .ThenInclude(o => o.Deliverer)
+                .ThenInclude(o => o.User)
                 .Include(o => o.FinishOrder)
                 .ThenInclude(fo => fo.Voucher)
                 .FirstOrDefault(o => o.AccessKey == accessKey);

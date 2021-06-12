@@ -88,7 +88,7 @@
                 <!--CarrierCNPJ-->
                 <CNPJ>12345678912345</CNPJ> <!--14 dígitos-->
                 <!--VehicleType-->
-                <tpVei>0</tpVei> <!--0-Caminhão, 1-Van, 2-Moto, 3-Navio, 4-Outro---> 
+                <tpVei>0</tpVei> <!--0-Caminhão, 1-Van, 2-Moto, 3-Navio, 4-Outro--> 
                 <!--VehiclePlate-->
                 <plVei>ABC1D23</plVei> <!--7 dígitos-->
                 <vol>

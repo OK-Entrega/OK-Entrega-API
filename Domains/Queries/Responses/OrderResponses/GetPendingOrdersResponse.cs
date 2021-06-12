@@ -1,5 +1,7 @@
 ﻿using Commom.Enum;
+using Commom.Services;
 using System;
+using System.Collections.Generic;
 
 namespace Domains.Queries.Responses.OrderResponses
 {
@@ -34,6 +36,8 @@ namespace Domains.Queries.Responses.OrderResponses
 
         public string XMLPath { get; set; }
 
+        public ICollection<Occurrences> Occurrences { get; set; }
+
         public GetPendingOrdersResponse(
             Guid id,
             string receiverName,
@@ -54,7 +58,8 @@ namespace Domains.Queries.Responses.OrderResponses
             string destinationUF,
             string destinationNumber,
             string destinationComplement,
-            string xmlPath
+            string xmlPath,
+            ICollection<Occurrences> occurrences
         )
         {
             Id = id;
@@ -77,6 +82,28 @@ namespace Domains.Queries.Responses.OrderResponses
             DestinationNumber = destinationNumber;
             DestinationComplement = destinationComplement;
             XMLPath = xmlPath;
+            Occurrences = occurrences;
+        }
+    }
+
+    public class Occurrences
+    {
+        public string ReasonOccurrence { get; set; }
+        public string DelivererName { get; set; }
+        public string Date { get; set; }
+        public ICollection<string> UrlsEvidences { get; set; }
+
+        public Occurrences(
+            EnReasonOccurrence reasonOccurrence,
+            string delivererName,
+            string urlsEvidences,
+            DateTime date
+        )
+        {
+            ReasonOccurrence = EnumServices.GetDescription(reasonOccurrence);
+            DelivererName = delivererName;
+            UrlsEvidences = urlsEvidences.Split(" ");
+            Date = date.ToString("dd/MM/yyyy HH:mm");
         }
     }
 }

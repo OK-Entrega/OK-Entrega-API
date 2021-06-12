@@ -4,92 +4,96 @@
         <infNFe>
             <ide>
                 <!--ModelNFE-->
-                <mod>55</mod>
+                <mod>55</mod> <!--2 dígitos--> <!--Não mexer-->
                 <!--Series-->
-                <serie>27</serie>
+                <serie>030</serie> <!--3 dígitos-->
                 <!--Number-->
-                <nNF>166000000</nNF>
+                <nNF>233000000</nNF> <!--9 dígitos-->
                 <!--NatureOperation-->
-                <natOp>Venda de mercadoria</natOp>
+                <natOp>Venda de mercadoria</natOp> <!--30 dígitos--> <!--Não mexer-->
                 <!--EnIssueType-->
-                <tpEmis>4</tpEmis>
+                <tpEmis>4</tpEmis> <!--1 dígito--> <!--Não mexer-->
                 <!--NumericCode-->
-                <cNF>00000000</cNF>
+                <cNF>33333333</cNF> <!--8 dígitos-->
                 <!--IssuedAt-->
-                <dEmi>2011-07-13T00:00:00</dEmi>
+                <dEmi>2013-07-13T12:30:00</dEmi> <!--4 dígitos (AAMM)-->
                 <!--DispatchedAt-->
-                <dSaiEnt>2011-07-13T17:20:00:00</dSaiEnt>
-                <!--CompanyUF-->
-                <cUF>53</cUF>
+                <dSaiEnt>2013-07-15T16:20:00:00</dSaiEnt>
+                <!--UFIssuerCode-->
+                <cUF>56</cUF> <!--2 dígitos-->
                 <!--VerifyingDigit-->
-                <cDV>1</cDV>
+                <cDV>3</cDV> <!--1 dígito-->
             </ide>
 
             <emit>
                 <!--Company.CNPJ-->
-                <CNPJ>07385111000102</CNPJ>
+                <CNPJ>06846999000101</CNPJ> <!--14 dígitos-->
                 <!--Company.Name-->
-                <xNome>E-Sales Solucoes Oobj</xNome>
+                <xNome> A-vendas Bijoteria Oobj</xNome> <!--40 dígitos-->
                 <enderEmit>
                     <!--IssuerCEP-->
-                    <CEP>12556000</CEP>
+                    <CEP>74993000</CEP> <!--8 dígitos-->
                     <!--IssuerAdress-->
-                    <xLgr>AV. MEDEIROS</xLgr>
+                    <xLgr>Eldorado</xLgr> 
                     <!--IssuerNumber-->
-                    <nro>999</nro>
+                    <nro>333</nro>
                     <!--IssuerComplement-->
-                    <xCpl>A</xCpl>
+                    <xCpl>D</xCpl>
                     <!--IssuerDistrict-->
                     <xBairro>CENTRO</xBairro>
                     <!--IssuerUF-->
                     <UF>SP</UF>
                     <!--IssuerCity-->
-                    <xMun>SAO JOSE</xMun>
+                    <xMun>Diadema</xMun>
                 </enderEmit>
             </emit>
 
             <dest>
                 <!--ReceiverName-->
-                <xNome>NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO – SEM VALOR FISCAL</xNome>
+                <xNome>Notebook</xNome> <!--40 dígitos-->
                 <!--ReceiverCNPJ-->
-                <CNPJ>07385111000102</CNPJ>
+                <CNPJ>06846999000101</CNPJ> <!--14 dígitos-->
 
                 <enderDest>
                     <!--DestinationCEP-->
-                    <CEP>12556000</CEP>
+                    <CEP>74993000</CEP>
                     <!--DestinationAdress-->
-                    <xLgr>AV. MEDEIROS</xLgr>
+                    <xLgr>Eldorado</xLgr>
                     <!--DestinationNumber-->
-                    <nro>999</nro>
+                    <nro>333</nro>
                     <!--DestinationComplement-->
-                    <xCpl>A</xCpl>
+                    <xCpl>D</xCpl>
                     <!--DestinationDistrict-->
                     <xBairro>CENTRO</xBairro>
                     <!--DestinationUF-->
                     <UF>SP</UF>
                     <!--DestinationCity-->
-                    <xMun>SAO JOSE</xMun>
+                    <xMun>Diadema</xMun>
                 </enderDest>
             </dest>
 
-            <det nItem='1'>
+            <det nItem='4'>
                 <prod>
                     <!--CFOP-->
-                    <CFOP>CFOP</CFOP>
+                    <CFOP>4234</CFOP> <!--4 dígitos-->
                 </prod>
             </det>
             <total>
                 <!--TotalValue-->
-                <valTot>0.00</valTot>
+                <valTot>2500.80</valTot> <!--Com pontos-->
             </total>
             <transp>
                 <!--CarrierName-->
-                <xNome>asdadad</xNome>
+                <xNome>Teste03</xNome> <!--40 dígitos-->
                 <!--CarrierCNPJ-->
-                <CNPJ>sadasddas</CNPJ>
+                <CNPJ>34765098439345</CNPJ> <!--14 dígitos-->
+                <!--VehicleType-->
+                <tpVei>1</tpVei> <!--0-Caminhão, 1-Van, 2-Moto, 3-Navio, 4-Outro--> 
+                <!--VehiclePlate-->
+                <plVei>DEF2E24</plVei> <!--7 dígitos-->
                 <vol>
                     <!--Weight-->
-                    <pesoB>0.00</pesoB>
+                    <pesoB>60.70</pesoB>
                 </vol>
             </transp>
         </infNFe>
