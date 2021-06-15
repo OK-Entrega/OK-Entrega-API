@@ -1,4 +1,5 @@
-﻿using Commom.Queries;
+﻿using Commom.Enum;
+using Commom.Queries;
 using Commom.Services;
 using Domains.Entities;
 using Domains.Queries.Requests.OrderRequests;
@@ -13,23 +14,31 @@ using System.Threading.Tasks;
 
 namespace Domains.Handlers.Queries.OrderHandlers
 {
-    public class GetPendingOrdersHandler : IRequestHandler<GetPendingOrdersRequest, GenericQueryResult>
+    public class GetFinishOrdersHandler : IRequestHandler<GetFinishOrdersRequest, GenericQueryResult>
     {
         private readonly IOrderRepository _orderRepository;
 
-        public GetPendingOrdersHandler(IOrderRepository orderRepository)
+        public GetFinishOrdersHandler(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
         }
 
-        public Task<GenericQueryResult> Handle(GetPendingOrdersRequest request, CancellationToken cancellationToken)
+        public Task<GenericQueryResult> Handle(GetFinishOrdersRequest request, CancellationToken cancellationToken)
         {
             try
             {
-                var query = _orderRepository.Read(request.CompanyId).Where(o => o.FinishOrder == null);
+                var query = _orderRepository.Read(request.CompanyId).Where(o => o.FinishOrder != null);
 
                 if (query == null)
                     return Task.FromResult(new GenericQueryResult(404, null, null));
+
+                if (!string.IsNullOrEmpty(request.Type))
+                {
+                    if (request.Type == "Entregas")
+                        query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
+                    else if (request.Type == "Devoluções")
+                        query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Devolution);
+                }
 
                 if (!string.IsNullOrEmpty(request.AccessKey))
                     query = query.Where(o => o.AccessKey.Contains(request.AccessKey));
@@ -44,6 +53,11 @@ namespace Domains.Handlers.Queries.OrderHandlers
                 if (!string.IsNullOrEmpty(request.CarrierCNPJ))
                     query = query.Where(o => o.CarrierCNPJ.Contains(request.CarrierCNPJ));
 
+                if (!string.IsNullOrEmpty(request.DelivererName))
+                    query = query.Where(o => o.FinishOrder.Deliverer.User.Name.ToLower().Contains(request.DelivererName.ToLower()));
+                if (!string.IsNullOrEmpty(request.DelivererCellphoneNumber))
+                    query = query.Where(o => o.FinishOrder.Deliverer.CellphoneNumber.Contains(request.DelivererCellphoneNumber));
+
                 if (request.IssuedAtLessThen != null)
                     query = query.Where(o => o.IssuedAt <= request.IssuedAtLessThen);
                 if (request.IssuedAtBiggerThen != null)
@@ -53,6 +67,11 @@ namespace Domains.Handlers.Queries.OrderHandlers
                     query = query.Where(o => o.DispatchedAt <= request.DispatchedAtLessThen);
                 if (request.DispatchedAtBiggerThen != null)
                     query = query.Where(o => o.DispatchedAt >= request.DispatchedAtBiggerThen);
+
+                if (request.FinishedAtLessThen != null)
+                    query = query.Where(o => o.FinishOrder.FinishedAt <= request.FinishedAtLessThen);
+                if (request.DispatchedAtBiggerThen != null)
+                    query = query.Where(o => o.FinishOrder.FinishedAt >= request.FinishedAtBiggerThen);
 
                 if (request.VehicleType != null)
                     query = query.Where(o => o.VehicleType == request.VehicleType);
@@ -87,6 +106,25 @@ namespace Domains.Handlers.Queries.OrderHandlers
                 if (!string.IsNullOrEmpty(request.DestinationComplement))
                     query = query.Where(o => o.DestinationComplement.ToLower().Contains(request.DestinationComplement.ToLower()));
 
+                if (!string.IsNullOrEmpty(request.VoucherSituation))
+                {
+                    query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
+                    if (request.VoucherSituation == "Válidos")
+                        query = query.Where(o => o.FinishOrder.Voucher.Score > 50);
+                    if (request.VoucherSituation == "Inválidos")
+                        query = query.Where(o => o.FinishOrder.Voucher.Score < 50);
+                    if (request.VoucherSituation == "Sem data")
+                        query = query.Where(o => o.FinishOrder.Voucher.HasData < 50);
+                    if (request.VoucherSituation == "Sem assinatura")
+                        query = query.Where(o => o.FinishOrder.Voucher.HasSignature < 50);
+                    if (request.VoucherSituation == "Sem número e série")
+                        query = query.Where(o => o.FinishOrder.Voucher.HasNumberAndSeries < 50);
+                    if (request.VoucherSituation == "Data inválida")
+                        query = query.Where(o => o.FinishOrder.Voucher.DataIsCorrect < 50);
+                    if (request.VoucherSituation == "Número e série inválidos")
+                        query = query.Where(o => o.FinishOrder.Voucher.NumberAndSeriesIsCorrect < 50);
+                }
+
                 if (query == null || query.Count() < 1)
                     return Task.FromResult(new GenericQueryResult(404, null, null));
 
@@ -111,6 +149,9 @@ namespace Domains.Handlers.Queries.OrderHandlers
                         break;
                     case "dispatchedAt":
                         orderByExpression = o => o.DispatchedAt;
+                        break;
+                    case "finishedAt":
+                        orderByExpression = o => o.FinishOrder.FinishedAt;
                         break;
                     case "vehicleType":
                         orderByExpression = o => o.VehicleType;
@@ -148,6 +189,40 @@ namespace Domains.Handlers.Queries.OrderHandlers
                     case "destinationComplement":
                         orderByExpression = o => o.DestinationComplement;
                         break;
+                    case "typeDevolutions":
+                        orderByExpression = o => o.FinishOrder.FinishType == EnFinishType.Devolution;
+                        break;
+                    case "typeSuccess":
+                        orderByExpression = o => o.FinishOrder.FinishType == EnFinishType.Success;
+                        break;
+                    case "voucherSituationValid":
+                        query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
+                        orderByExpression = o => o.FinishOrder.Voucher.Score > 50;
+                        break;
+                    case "voucherSituationInvalid":
+                        query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
+                        orderByExpression = o => o.FinishOrder.Voucher.Score < 50;
+                        break;
+                    case "voucherSituationHasNoData":
+                        query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
+                        orderByExpression = o => o.FinishOrder.Voucher.HasData < 50;
+                        break;
+                    case "voucherSituationHasNoSignature":
+                        query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
+                        orderByExpression = o => o.FinishOrder.Voucher.HasSignature < 50;
+                        break;
+                    case "voucherSituationHasNoNumberAndSeries":
+                        query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
+                        orderByExpression = o => o.FinishOrder.Voucher.HasNumberAndSeries < 50;
+                        break;
+                    case "voucherSituationDataIsIncorrect":
+                        query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
+                        orderByExpression = o => o.FinishOrder.Voucher.DataIsCorrect < 50;
+                        break;
+                    case "voucherSituationNumberAndSeriesIsIncorrect":
+                        query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
+                        orderByExpression = o => o.FinishOrder.Voucher.NumberAndSeriesIsCorrect < 50;
+                        break;
                     default:
                         orderByExpression = o => o.CreatedAt;
                         break;
@@ -169,8 +244,8 @@ namespace Domains.Handlers.Queries.OrderHandlers
                 var result = new
                 {
                     PageCount = pageCount,
-                    PendingOrders = query.Select(o => new GetPendingOrdersResponse(
-                            o.Id, o.ReceiverName, o.ReceiverCNPJ, o.CarrierName, o.CarrierCNPJ, o.IssuedAt.ToString("dd/MM/yyyy"), o.DispatchedAt.ToString("dd/MM/yyyy"), EnumServices.GetDescription(o.VehicleType), o.VehiclePlate, o.TotalValue, o.Weight, o.AccessKey, o.DestinationCEP, o.DestinationAddress, o.DestinationDistrict, o.DestinationCity, o.DestinationUF, o.DestinationNumber, o.DestinationComplement, o.XMLPath, o.Occurrences.OrderBy(oc => oc.CreatedAt).Select(oc => new Occurrences(oc.ReasonOccurrence, oc.Deliverer.User.Name, oc.UrlsEvidences, oc.CreatedAt)).ToList()
+                    PendingOrders = query.Select(o => new GetFinishOrdersResponse(
+                            o.Id, o.FinishOrder.FinishType == EnFinishType.Devolution ? "Devolução" : "Entregue", o.ReceiverName, o.ReceiverCNPJ, o.CarrierName, o.CarrierCNPJ, o.FinishOrder.Deliverer.User.Name, o.FinishOrder.Deliverer.CellphoneNumber, o.IssuedAt.ToString("dd/MM/yyyy"), o.DispatchedAt.ToString("dd/MM/yyyy"), o.FinishOrder.FinishedAt.ToString("dd/MM/yyyy"), EnumServices.GetDescription(o.VehicleType), o.VehiclePlate, o.TotalValue, o.Weight, o.AccessKey, o.DestinationCEP, o.DestinationAddress, o.DestinationDistrict, o.DestinationCity, o.DestinationUF, o.DestinationNumber, o.DestinationComplement, o.XMLPath, o.FinishOrder.UrlsEvidences, o.Occurrences.OrderBy(oc => oc.CreatedAt).Select(oc => new Occurrences(oc.ReasonOccurrence, oc.Deliverer.User.Name, oc.UrlsEvidences, oc.CreatedAt)).ToList()
                         )
                     ).ToList()
                 };

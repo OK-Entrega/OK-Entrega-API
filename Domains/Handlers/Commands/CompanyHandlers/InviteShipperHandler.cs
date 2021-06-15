@@ -42,7 +42,9 @@ namespace Domains.Handlers.Commands.CompanyHandlers
 
                 var shipper = _shipperRepository.Search(request.Email);
 
-                MessageServices.SendEmail(request.Email, $"Convite para entrar na {company.Name}!", $"<p style='color: black; font-weight: bold'>Olá, {shipper.User.Name}!<br> Você recebeu um convite para entrar na empresa {company.Name}! Clique no botão abaixo para aceitar.</p><br><a href='https://www.customvision.ai/projects/71e376d6-7942-450d-80d6-de9f8ac18b35#/manage'><button style='display: block; margin: auto; border-color: #2ecc71; background: #2ecc71; color: white; font-weight: bold; text-decoration: none; cursor: pointer; box-shadow: none'>Entrar</button></a>");
+                var link = $"http://localhost:3000/join-in-a-company/accept-invite/{company.Id}/{shipper.Id}";
+
+                MessageServices.SendEmail(request.Email, $"Convite para entrar na {company.Name}!", $"<p style='color: black; font-weight: bold'>Olá, {shipper.User.Name}!<br> Você recebeu um convite para entrar na empresa {company.Name}! Clique no botão abaixo para aceitar.</p><br><a href='{link}'><button style='display: block; margin: auto; border-color: #2ecc71; background: #2ecc71; color: white; font-weight: bold; text-decoration: none; cursor: pointer; box-shadow: none'>Entrar</button></a>");
 
                 return Task.FromResult(new GenericCommandResult(200, $"Um convite para {shipper.User.Name} foi enviado por email com sucesso!", null));
             }

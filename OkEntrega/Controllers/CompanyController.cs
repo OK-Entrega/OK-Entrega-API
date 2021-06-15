@@ -25,6 +25,21 @@ namespace API.Controllers
             return await Result(request);
         }
 
+        [HttpGet("get-dashboard-data")]
+        //[Authorize]
+        public async Task<ObjectResult> GetDashboardData([FromQuery] GetDashboardDataRequest request)
+        {
+            return await Result(request);
+        }
+
+        [HttpGet("get-shippers")]
+        [Authorize]
+        public async Task<ObjectResult> GetShippers([FromQuery] GetShippersRequest request)
+        {
+            request.UserId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return await Result(request);
+        }
+
         [HttpPost("create-company")]
         [Authorize]
         public async Task<ObjectResult> CreateCompany([FromForm] CreateCompanyRequest request)

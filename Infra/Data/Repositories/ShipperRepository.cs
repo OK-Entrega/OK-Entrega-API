@@ -17,9 +17,14 @@ namespace Infra.Data.Repositories
             _context = context;
         }
 
-        public ICollection<Shipper> ReadAll(Guid companyId)
+        public IQueryable<Shipper> Read(Guid companyId)
         {
-            throw new NotImplementedException();
+            return _context
+                .Shippers
+                .Include(s => s.User)
+                .Include(s => s.ShipperHasCompanies)
+                .Where(s => s.ShipperHasCompanies.Any(shc => shc.CompanyId == companyId))
+                .OrderBy(s => s.User.Name);
         }
 
         public Shipper Search(string email)
