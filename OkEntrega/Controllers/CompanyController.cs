@@ -39,6 +39,13 @@ namespace API.Controllers
             return await Result(request);
         }
 
+        [HttpGet("get-georeferencing-data")]
+        [Authorize]
+        public async Task<ObjectResult> GetGeoreferencingData([FromQuery] GetGeoreferencingDataRequest request)
+        {
+            return await Result(request);
+        }
+
         [HttpGet("get-shippers")]
         [Authorize]
         public async Task<ObjectResult> GetShippers([FromQuery] GetShippersRequest request)

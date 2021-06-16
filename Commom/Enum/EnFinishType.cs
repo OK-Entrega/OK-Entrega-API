@@ -4,9 +4,9 @@ namespace Commom.Enum
 {
     public enum EnFinishType
     {
-        [Description("Entregue")]
+        [Description("Entregue com sucesso")]
         Success = 0,
-        [Description("Devolvida")]
+        [Description("Devolução")]
         Devolution = 1
     }
 }

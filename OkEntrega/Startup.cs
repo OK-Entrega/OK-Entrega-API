@@ -124,6 +124,7 @@ namespace OkEntrega
             services.AddTransient<IDelivererRepository, DelivererRepository>();
             services.AddTransient<ICompanyRepository, CompanyRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOccurrenceRepository, OccurrenceRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
