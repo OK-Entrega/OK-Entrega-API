@@ -7,8 +7,6 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -124,11 +122,13 @@ namespace Domains.Handlers.Queries.CompanyHandlers
 
                 var notesCount = orders.Select(o => o.Count).Count();
                 var finishedsWithSuccessCount = finishedsWithSuccess.Select(o => o.Count).Count();
+                var finishedsWithSuccessPercentage = Math.Round( (decimal) finishedsWithSuccess.Count() * 100 / notesCount) + "%";
                 var finishedsWithDevolutionCount = finishedsWithDevolution.Select(o => o.Count).Count();
+                var finishedsWithDevolutionPercentage = Math.Round( (decimal) finishedsWithDevolution.Count() * 100 / notesCount) + "%";
                 var occurrencesCount = occurrences.Select(o => o.Count).Count();
-                var occurrencesAverage = (decimal) occurrencesCount / notesCount;
+                var occurrencesAverage = Math.Round((decimal) occurrencesCount / notesCount, 2);
 
-                return Task.FromResult(new GenericQueryResult(200, null, new { Graphs = new[] { ordersGraph, finishedsWithSuccessGraph, finishedsWithDevolutionGraph, occurrencesGraph }, notesCount, finishedsWithSuccessCount, finishedsWithDevolutionCount, occurrencesCount, occurrencesAverage}));
+                return Task.FromResult(new GenericQueryResult(200, null, new { Graphs = new[] { ordersGraph, finishedsWithSuccessGraph, finishedsWithDevolutionGraph, occurrencesGraph }, notesCount, finishedsWithSuccessCount, finishedsWithSuccessPercentage, finishedsWithDevolutionCount, finishedsWithDevolutionPercentage, occurrencesCount, occurrencesAverage}));
             }
             catch (Exception ex)
             {

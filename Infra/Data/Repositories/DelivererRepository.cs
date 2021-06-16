@@ -3,6 +3,7 @@ using Domains.Repositories;
 using Infra.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Infra.Data.Repositories
@@ -19,6 +20,16 @@ namespace Infra.Data.Repositories
         public Deliverer Search(Guid id)
         {
             throw new NotImplementedException();
+        }
+
+        public IQueryable<Deliverer> Read()
+        {
+            return
+                _context
+                .Deliverers
+                .Include(d => d.User)
+                .Include(d => d.FinishedOrders).ThenInclude(f => f.Order)
+                .Include(d => d.OccurrencesOrders).ThenInclude(o => o.Order);
         }
 
         public Deliverer Search(string cellphoneNumber)
