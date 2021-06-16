@@ -26,8 +26,15 @@ namespace API.Controllers
         }
 
         [HttpGet("get-dashboard-data")]
-        //[Authorize]
+        [Authorize]
         public async Task<ObjectResult> GetDashboardData([FromQuery] GetDashboardDataRequest request)
+        {
+            return await Result(request);
+        }
+
+        [HttpGet("get-field-records")]
+        [Authorize]
+        public async Task<ObjectResult> GetFieldRecords([FromQuery] GetFieldRecordsRequest request)
         {
             return await Result(request);
         }
