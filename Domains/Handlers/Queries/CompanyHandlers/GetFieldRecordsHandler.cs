@@ -32,7 +32,10 @@ namespace Domains.Handlers.Queries.CompanyHandlers
                 if (!string.IsNullOrEmpty(request.DelivererName))
                     query = query.Where(d => d.User.Name.ToLower().Contains(request.DelivererName.ToLower()));
 
-                request.Date = request.Date.Date;
+                if (request.Date != null)
+                    request.Date = request.Date.Value.Date;
+                else
+                    request.Date = DateTime.Now.Date;
 
                 var result = new List<GetFieldRecordsResponse>();
 
@@ -65,21 +68,78 @@ namespace Domains.Handlers.Queries.CompanyHandlers
 
                 var ordersQuery = _orderRepository.Read(request.CompanyId);
 
-                var finishedsWithSuccess = ordersQuery.Where(o => o.FinishOrder.FinishedAt.Date == request.Date && o.FinishOrder.FinishType == EnFinishType.Success).Count();
-                var finishedsWithDevolution = ordersQuery.Where(o => o.FinishOrder.FinishedAt.Date == request.Date && o.FinishOrder.FinishType == EnFinishType.Devolution).Count();
-                var occurrences = ordersQuery.SelectMany(o => o.Occurrences.Where(oc => oc.CreatedAt.Date == request.Date)).Count();
-                var notes = ordersQuery.Where(o => o.CreatedAt.Date == request.Date).Count() - (finishedsWithSuccess + finishedsWithDevolution + occurrences);
-
-                var graph = new
+                var finishedsWithSuccess = new
                 {
-                    notes,
-                    finishedsWithSuccess,
-                    finishedsWithDevolution,
-                    occurrences
+                    Id = "Entregues",
+                    Label = "Entregues",
+                    Value = ordersQuery.Where(o => o.FinishOrder.FinishedAt.Date == request.Date && o.FinishOrder.FinishType == EnFinishType.Success).Count(),
+                    Color = "hsl(145, 63%, 49%)"
                 };
 
-                if(!result.Any())
-                    return Task.FromResult(new GenericQueryResult(404, null, new { graph }));
+                var finishedsWithDevolution = new
+                {
+                    Id = "Devoluções",
+                    Label = "Devoluções",
+                    Value = ordersQuery.Where(o => o.FinishOrder.FinishedAt.Date == request.Date && o.FinishOrder.FinishType == EnFinishType.Devolution).Count(),
+                    Color = "hsl(0, 100%, 50%)"
+                };
+
+                var occurrences = new
+                {
+                    Id = "Ocorrências",
+                    Label = "Ocorrências",
+                    Value = ordersQuery.SelectMany(o => o.Occurrences.Where(oc => oc.CreatedAt.Date == request.Date)).Count(),
+                    Color = "hsl(36, 99%, 56%)"
+                };
+
+                var countNotes = ordersQuery.Where(o => o.CreatedAt.Date == request.Date).Count() - (finishedsWithSuccess.Value + finishedsWithDevolution.Value + occurrences.Value);
+
+                countNotes = countNotes <= 0 ? 0 : countNotes;
+
+                var notes = new
+                {
+                    Id = "Em aberto",
+                    Label = "Em aberto",
+                    Value = countNotes,
+                    Color = "hsl(0, 0%, 53%)"
+                };
+
+                result = result.FindAll(r => r.FinishedsWithDevolution > 0 || r.FinishedsWithSuccess > 0 || r.Occurrences > 0);
+
+                var graph = new[]
+                {
+                    new
+                    {
+                        finishedsWithSuccess.Id,
+                        finishedsWithSuccess.Label,
+                        finishedsWithSuccess.Value,
+                        finishedsWithSuccess.Color
+                    },
+                    new
+                    {
+                        finishedsWithDevolution.Id,
+                        finishedsWithDevolution.Label,
+                        finishedsWithDevolution.Value,
+                        finishedsWithDevolution.Color
+                    },
+                    new
+                    {
+                        notes.Id,
+                        notes.Label,
+                        notes.Value,
+                        notes.Color
+                    },
+                    new
+                    {
+                        occurrences.Id,
+                        occurrences.Label,
+                        occurrences.Value,
+                        occurrences.Color
+                    }
+                };
+
+                if (!result.Any())
+                    return Task.FromResult(new GenericQueryResult(404, null, null));
 
                 result = result.OrderBy(d => d.DelivererName).ThenBy(d => d.FinishedsWithSuccess).ThenBy(d => d.FinishedsWithDevolution).ThenBy(d => d.Occurrences).ToList();
 

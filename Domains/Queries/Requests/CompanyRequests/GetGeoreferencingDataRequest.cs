@@ -9,6 +9,7 @@ namespace Domains.Queries.Requests.CompanyRequests
         public DateTime? DateLessThen { get; set; }
         public DateTime? DateBiggerThen { get; set; }
         public string DelivererName { get; set; }
+        public string AccessKey { get; set; }
         public string Type { get; set; }
     }
 }

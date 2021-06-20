@@ -36,11 +36,11 @@ namespace Domains.Handlers.Queries.CompanyHandlers
                     {
                         case "Devoluções":
                             queryOrder = queryOrder.Where(o => o.FinishOrder.FinishType == EnFinishType.Devolution);
-                            queryOccurrence.Where(o => o.CreatedAt < DateTime.MinValue);
+                            queryOccurrence = queryOccurrence.Where(o => o.CreatedAt < DateTime.MinValue);
                             break;
-                        case "Entregues":
+                        case "Entregas":
                             queryOrder = queryOrder.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
-                            queryOccurrence.Where(o => o.CreatedAt < DateTime.MinValue);
+                            queryOccurrence = queryOccurrence.Where(o => o.CreatedAt < DateTime.MinValue);
                             break;
                         case "Ocorrências":
                             queryOrder = queryOrder.Where(o => o.FinishOrder.CreatedAt < DateTime.MinValue);
@@ -53,6 +53,12 @@ namespace Domains.Handlers.Queries.CompanyHandlers
                     queryOccurrence = queryOccurrence.Where(o => o.Deliverer.User.Name.ToLower().Contains(request.DelivererName.ToLower()));
                 }
 
+                if (!string.IsNullOrEmpty(request.AccessKey))
+                {
+                    queryOrder = queryOrder.Where(o => o.FinishOrder.Order.AccessKey.Contains(request.AccessKey));
+                    queryOccurrence = queryOccurrence.Where(o => o.Order.AccessKey.Contains(request.AccessKey));
+                }
+
                 if (request.DateLessThen != null)
                 {
                     queryOrder = queryOrder.Where(o => o.FinishOrder.FinishedAt <= request.DateLessThen);
@@ -61,8 +67,8 @@ namespace Domains.Handlers.Queries.CompanyHandlers
 
                 if (request.DateBiggerThen != null)
                 {
-                    queryOrder = queryOrder.Where(o => o.FinishOrder.FinishedAt >= request.DateLessThen);
-                    queryOccurrence = queryOccurrence.Where(o => o.CreatedAt >= request.DateLessThen);
+                    queryOrder = queryOrder.Where(o => o.FinishOrder.FinishedAt >= request.DateBiggerThen);
+                    queryOccurrence = queryOccurrence.Where(o => o.CreatedAt >= request.DateBiggerThen);
                 }
 
                 var result = new List<GetGeoreferencingDataResponse>();
