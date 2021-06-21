@@ -18,7 +18,7 @@ namespace Commom.Services
             return "http://localhost:5000/Uploads/XML/" + fileName;
         }
 
-        public static string Image(IFormFile image)
+        public static string Image(IFormFile image, bool serverDirectoryPathToo = false)
         {
             var fileName = $"OK-Entrega-Image-{Guid.NewGuid().ToString().Replace("-", "")}{Path.GetExtension(image.FileName)}";
 
@@ -28,7 +28,9 @@ namespace Commom.Services
 
             image.CopyTo(streamImagem);
 
-            return "http://localhost:5000/Uploads/Image/" + fileName;
+            if(serverDirectoryPathToo)
+                return "http://localhost:5000/Uploads/Image/" + " " + filePath;
+            return "http://localhost:5000/Uploads/Image/";
         }
     }
 }

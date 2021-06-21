@@ -365,9 +365,6 @@ namespace Infra.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("DataIsCorrect")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<Guid>("FinishOrderId")
                         .HasColumnType("uniqueidentifier");
 
@@ -378,9 +375,6 @@ namespace Infra.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("HasSignature")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("NumberAndSeriesIsCorrect")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Path")

@@ -54,17 +54,20 @@ namespace Domains.Handlers.Commands.OrderHandlers
 
                 if (request.FinishType == EnFinishType.Success)
                 {
-                    var voucherPath = UploadServices.Image(request.Voucher);
+                    var voucherPath = UploadServices.Image(request.Voucher, true);
 
-                    var voucher = new Voucher(voucherPath);
+                    var dictionary = new CustomVisionServices().AnalyzeVoucher(voucherPath.Split(" ")[1]);
+
+                    if(dictionary.Any(i => i.Value < 50))
+                        return Task.FromResult(new GenericCommandResult(200, "Há algo de errado com este canhoto!", dictionary));
+
+                    var voucher = new Voucher(voucherPath, (decimal) dictionary["Data"], (decimal) dictionary["Assinatura"], (decimal) dictionary["Número e série"]);
 
                     var finishOrder = new FinishOrder(evidences, null, deliverer.Id, request.LatitudeDeliverer, request.LongitudeDeliverer, request.FinishedAt, order.Id, EnFinishType.Success, voucher);
 
                     _orderRepository.Finish(finishOrder);
 
-                    //mensagens caso de nota baixa
-
-                    return Task.FromResult(new GenericCommandResult(200, "Entrega cadastrada com sucesso!", null));
+                    return Task.FromResult(new GenericCommandResult(200, "Entrega finalizada com sucesso!", dictionary));
                 }
                 else
                 {
@@ -72,7 +75,7 @@ namespace Domains.Handlers.Commands.OrderHandlers
 
                     _orderRepository.Finish(finishOrder);
 
-                    return Task.FromResult(new GenericCommandResult(200, "Devolução cadastrada com sucesso!", null));
+                    return Task.FromResult(new GenericCommandResult(200, "Devolução finalizada com sucesso!", null));
                 }
             }
             catch (Exception ex)

@@ -119,10 +119,10 @@ namespace Domains.Handlers.Queries.OrderHandlers
                         query = query.Where(o => o.FinishOrder.Voucher.HasSignature < 50);
                     if (request.VoucherSituation == "Sem número e série")
                         query = query.Where(o => o.FinishOrder.Voucher.HasNumberAndSeries < 50);
-                    if (request.VoucherSituation == "Data inválida")
-                        query = query.Where(o => o.FinishOrder.Voucher.DataIsCorrect < 50);
-                    if (request.VoucherSituation == "Número e série inválidos")
-                        query = query.Where(o => o.FinishOrder.Voucher.NumberAndSeriesIsCorrect < 50);
+                    //if (request.VoucherSituation == "Data inválida")
+                    //    query = query.Where(o => o.FinishOrder.Voucher.DataIsCorrect < 50);
+                    //if (request.VoucherSituation == "Número e série inválidos")
+                    //    query = query.Where(o => o.FinishOrder.Voucher.NumberAndSeriesIsCorrect < 50);
                 }
 
                 if (query == null || query.Count() < 1)
@@ -215,14 +215,14 @@ namespace Domains.Handlers.Queries.OrderHandlers
                         query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
                         orderByExpression = o => o.FinishOrder.Voucher.HasNumberAndSeries < 50;
                         break;
-                    case "voucherSituationDataIsIncorrect":
-                        query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
-                        orderByExpression = o => o.FinishOrder.Voucher.DataIsCorrect < 50;
-                        break;
-                    case "voucherSituationNumberAndSeriesIsIncorrect":
-                        query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
-                        orderByExpression = o => o.FinishOrder.Voucher.NumberAndSeriesIsCorrect < 50;
-                        break;
+                    //case "voucherSituationDataIsIncorrect":
+                    //    query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
+                    //    orderByExpression = o => o.FinishOrder.Voucher.DataIsCorrect < 50;
+                    //    break;
+                    //case "voucherSituationNumberAndSeriesIsIncorrect":
+                    //    query = query.Where(o => o.FinishOrder.FinishType == EnFinishType.Success);
+                    //    orderByExpression = o => o.FinishOrder.Voucher.NumberAndSeriesIsCorrect < 50;
+                    //    break;
                     default:
                         orderByExpression = o => o.CreatedAt;
                         break;
