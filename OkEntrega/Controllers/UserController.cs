@@ -1,4 +1,5 @@
 ﻿using Domains.Commands.Requests.UserRequests;
+using Domains.Queries.Requests.UserRequests;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,15 @@ namespace API.Controllers
     public class UserController : BaseController
     {
         public UserController(IMediator mediator) : base(mediator) { }
+
+        [HttpGet("get-profile")]
+        public async Task<ObjectResult> SignUp()
+        {
+            var request = new GetProfileRequest();
+            request.Discriminator = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "discriminator").Value;
+            request.UserId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return await Result(request);
+        }
 
         [HttpPost("signup")]
         public async Task<ObjectResult> SignUp([FromBody] CreateAccountRequest request)
