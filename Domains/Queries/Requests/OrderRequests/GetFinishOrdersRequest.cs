@@ -47,7 +47,7 @@ namespace Domains.Queries.Requests.OrderRequests
         public string DestinationNumber { get; set; }
         public string DestinationComplement { get; set; }
 
-        public string VoucherSituation { get; set; }
+        //public string VoucherSituation { get; set; }
 
         public string OrderBy { get; set; }
         public bool? Descending { get; set; } = false;
@@ -72,9 +72,6 @@ namespace Domains.Queries.Requests.OrderRequests
             Page = page <= 0 ? 1 : page;
         }
 
-        public GetFinishOrdersRequest()
-        {
-
-        }
+        public GetFinishOrdersRequest(){}
     }
 }
