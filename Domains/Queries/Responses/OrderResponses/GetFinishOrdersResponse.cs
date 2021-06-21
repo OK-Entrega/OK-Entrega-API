@@ -38,7 +38,9 @@ namespace Domains.Queries.Responses.OrderResponses
         public string DestinationNumber { get; set; }
         public string DestinationComplement { get; set; }
 
-        public string Documents { get; set; }
+        public string XMLPath { get; set; }
+        public string UrlVoucher { get; set; }
+        public string UrlsEvidences { get; set; }
 
         public ICollection<Occurrences> Occurrences { get; set; }
 
@@ -67,6 +69,7 @@ namespace Domains.Queries.Responses.OrderResponses
             string destinationNumber,
             string destinationComplement,
             string xmlPath,
+            string urlVoucher,
             string urlsEvidences,
             ICollection<Occurrences> occurrences
         )
@@ -94,7 +97,9 @@ namespace Domains.Queries.Responses.OrderResponses
             DestinationUF = destinationUF;
             DestinationNumber = destinationNumber;
             DestinationComplement = destinationComplement;
-            Documents = $"{xmlPath} {urlsEvidences}";
+            XMLPath = xmlPath;
+            UrlVoucher = urlVoucher;
+            UrlsEvidences = urlsEvidences;
             Occurrences = occurrences;
         }
     }

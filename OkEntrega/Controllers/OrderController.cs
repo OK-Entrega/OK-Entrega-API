@@ -32,6 +32,13 @@ namespace API.Controllers
             return await Result(request);
         }
 
+        [HttpGet("finished")]
+        [Authorize]
+        public async Task<ObjectResult> Finished([FromQuery] GetFinishOrdersRequest request)
+        {
+            return await Result(request);
+        }
+
         [HttpPost("create-orders-with-xml")]
         [Authorize]
         public async Task<ObjectResult> CreateOrdersWithXml([FromForm] CreateOrdersRequest request)

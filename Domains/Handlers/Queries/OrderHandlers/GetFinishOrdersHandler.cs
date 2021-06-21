@@ -244,8 +244,8 @@ namespace Domains.Handlers.Queries.OrderHandlers
                 var result = new
                 {
                     PageCount = pageCount,
-                    PendingOrders = query.Select(o => new GetFinishOrdersResponse(
-                            o.Id, o.FinishOrder.FinishType == EnFinishType.Devolution ? "Devolução" : "Entregue", o.ReceiverName, o.ReceiverCNPJ, o.CarrierName, o.CarrierCNPJ, o.FinishOrder.Deliverer.User.Name, o.FinishOrder.Deliverer.CellphoneNumber, o.IssuedAt.ToString("dd/MM/yyyy"), o.DispatchedAt.ToString("dd/MM/yyyy"), o.FinishOrder.FinishedAt.ToString("dd/MM/yyyy"), EnumServices.GetDescription(o.VehicleType), o.VehiclePlate, o.TotalValue, o.Weight, o.AccessKey, o.DestinationCEP, o.DestinationAddress, o.DestinationDistrict, o.DestinationCity, o.DestinationUF, o.DestinationNumber, o.DestinationComplement, o.XMLPath, o.FinishOrder.UrlsEvidences, o.Occurrences.OrderBy(oc => oc.CreatedAt).Select(oc => new Occurrences(oc.ReasonOccurrence, oc.Deliverer.User.Name, oc.UrlsEvidences, oc.CreatedAt)).ToList()
+                    FinishedOrders = query.Select(o => new GetFinishOrdersResponse(
+                            o.Id, o.FinishOrder.FinishType == EnFinishType.Devolution ? "Devolução" : "Entrega", o.ReceiverName, o.ReceiverCNPJ, o.CarrierName, o.CarrierCNPJ, o.FinishOrder.Deliverer.User.Name, o.FinishOrder.Deliverer.CellphoneNumber, o.IssuedAt.ToString("dd/MM/yyyy"), o.DispatchedAt.ToString("dd/MM/yyyy"), o.FinishOrder.FinishedAt.ToString("dd/MM/yyyy"), EnumServices.GetDescription(o.VehicleType), o.VehiclePlate, o.TotalValue, o.Weight, o.AccessKey, o.DestinationCEP, o.DestinationAddress, o.DestinationDistrict, o.DestinationCity, o.DestinationUF, o.DestinationNumber, o.DestinationComplement, o.XMLPath, o.FinishOrder.FinishType == EnFinishType.Devolution ? "" : o.FinishOrder.Voucher.Path, o.FinishOrder.UrlsEvidences != null ? o.FinishOrder.UrlsEvidences : "", o.Occurrences.OrderBy(oc => oc.CreatedAt).Select(oc => new Occurrences(oc.ReasonOccurrence, oc.Deliverer.User.Name, oc.UrlsEvidences, oc.CreatedAt)).ToList()
                         )
                     ).ToList()
                 };
