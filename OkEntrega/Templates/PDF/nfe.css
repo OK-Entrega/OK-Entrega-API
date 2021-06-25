@@ -27,7 +27,7 @@
 }
 
 .nfeArea.page {
-    width: 90%;
+    width: 100%;
     position: relative;
     color: #000;
     margin: 0 auto;
@@ -35,11 +35,11 @@
 }
 
 .nfeArea .font-12 {
-    font-size: 13pt;
+    font-size: 14pt;
 }
 
 .nfeArea .font-8 {
-    font-size: 9pt;
+    font-size: 10pt;
 }
 
 .nfeArea .bold {
@@ -50,7 +50,7 @@
     color: #000;
     font-weight: bold;
     margin: 5px 0 0;
-    font-size: 7pt;
+    font-size: 8pt;
     text-transform: uppercase;
 }
 
@@ -74,19 +74,19 @@
 
     .nfeArea .nf-label.label-small {
         letter-spacing: -0.5px;
-        font-size: 5pt;
+        font-size: 6pt;
     }
 
 .nfeArea .info {
     font-weight: bold;
-    font-size: 9pt;
+    font-size: 10pt;
     display: block;
     line-height: 1em;
 }
 
 .nfeArea table {
     color: #000;
-    font-size: 6pt;
+    font-size: 7pt;
     border-collapse: collapse;
     width: 100%;
     border-color: #000;
@@ -117,7 +117,7 @@
 .nfeArea .tserie {
     width: 32.2mm;
     vertical-align: middle;
-    font-size: 9pt;
+    font-size: 10pt;
     font-weight: bold;
 }
 
@@ -163,7 +163,7 @@
 }
 
 .nfeArea .title {
-    font-size: 11pt;
+    font-size: 12pt;
     margin-bottom: 2mm;
 }
 
@@ -205,7 +205,7 @@
     }
 
     .nfeArea .boxImposto .nf-label {
-        font-size: 6pt;
+        font-size: 7pt;
     }
 
     .nfeArea .boxImposto .info {
@@ -247,7 +247,7 @@
 }
 
 .nfeArea .boxProdutoServico td {
-    font-size: 6pt;
+    font-size: 7pt;
     height: auto;
 }
 
@@ -273,7 +273,7 @@
 }
 
 .page .boxFields td p {
-    font-size: 6pt;
+    font-size: 7pt;
     line-height: 1.2em;
     color: #000;
 }
@@ -325,6 +325,6 @@
 }
 
 .label-mktup {
-    font-size: 8px !important;
+    font-size: 9px !important;
     padding-top: 8px !important;
 }

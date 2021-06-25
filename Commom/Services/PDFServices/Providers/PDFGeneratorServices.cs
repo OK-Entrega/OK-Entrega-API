@@ -39,12 +39,13 @@ namespace Commom.Services.PDFServices.Providers
                         ),
                         WebSettings = 
                         { 
-                            DefaultEncoding = "utf-8", 
+                            DefaultEncoding = "utf-8",
                             UserStyleSheet = cssPath, 
                             LoadImages = true},
                         HeaderSettings = 
                         { 
                             FontSize = 9,
+                            Right = "Página [page] de [toPage]",
                             Line = false,
                             Spacing = 2.812
                         },

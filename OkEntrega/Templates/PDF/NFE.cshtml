@@ -28,7 +28,7 @@
                             <td rowspan="2" class="tserie txt-center">
                                 <span class="font-12" style="margin-bottom: 5px;">NF-e</span>
                                 <span>Nº @Html.DisplayFor(model => order.Order.Number) </span>
-                                <span>Série @Html.DisplayFor(model => order.Order.Series) </span>
+                                <span>SÉRIE @Html.DisplayFor(model => order.Order.Series) </span>
                             </td>
                         </tr>
                         <tr>
@@ -46,16 +46,16 @@
                     <tbody>
                         <tr>
                             <td rowspan="3" style="width: 30mm">
-                                <img class="client_logo" src="[url_logo]" alt="" onerror=" javascript:this.src='data:image/png;base64," />
+                                <img class="client_logo" src=@order.Order.Company.UrlLogo alt="" />
                             </td>
                             <td rowspan="3" style="width: 46mm; font-size: 7pt;" class="txt-center">
                                 <span class="mb2 bold block">@Html.DisplayFor(model => order.Order.Company.Name)</span>
-                                <span class="block">[ds_company_address]</span>
+                                <span class="block">@Html.DisplayFor(model => order.Order.IssuerAddress)</span>
                                 <span class="block">
-                                    [ds_company_neighborhood] - @Html.DisplayFor(model => order.Order.IssuerCEP)
+                                    @Html.DisplayFor(model => order.Order.IssuerDistrict) - @Html.DisplayFor(model => order.Order.IssuerCEP)
                                 </span>
                                 <span class="block">
-                                    @Html.DisplayFor(model => order.Order.Company.Name) - @Html.DisplayFor(model => order.Order.IssuerUF)- Fone: @Html.DisplayFor(model => order.Order.Number)
+                                    @Html.DisplayFor(model => order.Order.Company.Name) - @Html.DisplayFor(model => order.Order.IssuerUF)- Fone: --
                                 </span>
                             </td>
                             <td rowspan="3" class="txtc txt-upper" style="width: 34mm; height: 29.5mm;">
@@ -63,7 +63,7 @@
                                 <p class="mb2">Documento auxiliar da Nota Fiscal Eletrônica </p>
                                 <p class="entradaSaida mb2">
                                     <span class="identificacao">
-                                        <span>[ds_code_operation_type]</span>
+                                        <span>@Html.DisplayFor(model => order.Order.ModelNFE)</span>
                                     </span>
                                     <span class="legenda">
                                         <span>0 - Entrada</span>
@@ -78,12 +78,6 @@
                                     <span class="block bold">
                                         <span>SÉRIE:</span>
                                         <span>@Html.DisplayFor(model => order.Order.Series)</span>
-                                    </span>
-                                    <span class="block">
-                                        <span>Página</span>
-                                        <span>[actual_page]</span>
-                                        <span>de</span>
-                                        <span>[total_pages]</span>
                                     </span>
                                 </p>
                             </td>
@@ -113,11 +107,11 @@
                         <tr>
                             <td>
                                 <span class="nf-label">NATUREZA DA OPERAÇÃO</span>
-                                <span class="info">[_ds_transaction_nature]</span>
+                                <span class="info">@Html.DisplayFor(model => order.Order.NatureOperation)</span>
                             </td>
                             <td style="width: 84.7mm;">
-                                <span class="nf-label">[protocol_label]</span>
-                                <span class="info">[ds_protocol]</span>
+                                <span class="nf-label">--</span>
+                                <span class="info">--</span>
                             </td>
                         </tr>
                     </tbody>
@@ -129,11 +123,11 @@
                         <tr>
                             <td>
                                 <span class="nf-label">INSCRIÇÃO ESTADUAL</span>
-                                <span class="info">[nl_company_ie]</span>
+                                <span class="info">--</span>
                             </td>
                             <td style="width: 67.5mm;">
                                 <span class="nf-label">INSCRIÇÃO ESTADUAL DO SUBST. TRIB.</span>
-                                <span class="info">[nl_company_ie_st]</span>
+                                <span class="info">--</span>
                             </td>
                             <td style="width: 64.3mm">
                                 <span class="nf-label">CNPJ</span>
@@ -166,7 +160,7 @@
                             </td>
                             <td style="width: 22mm">
                                 <span class="nf-label">DATA DE EMISSÃO</span>
-                                <span class="info">[dt_invoice_issue]</span>
+                                <span class="info">@order.Order.IssuedAt.ToString("dd/MM/yyyy HH:mm")</span>
                             </td>
                         </tr>
                         <tr>
@@ -176,15 +170,15 @@
                                         <tr>
                                             <td>
                                                 <span class="nf-label">ENDEREÇO</span>
-                                                <span class="info">[ds_client_address]</span>
+                                                <span class="info">@Html.DisplayFor(model => order.Order.DestinationAddress)</span>
                                             </td>
                                             <td style="width: 47mm;">
                                                 <span class="nf-label">BAIRRO/DISTRITO</span>
-                                                <span class="info">[ds_client_neighborhood]</span>
+                                                <span class="info">@Html.DisplayFor(model => order.Order.DestinationDistrict)</span>
                                             </td>
                                             <td style="width: 37.2mm">
                                                 <span class="nf-label">CEP</span>
-                                                <span class="info">[nu_client_cep]</span>
+                                                <span class="info">@Html.DisplayFor(model => order.Order.DestinationCEP)</span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -192,7 +186,7 @@
                             </td>
                             <td>
                                 <span class="nf-label">DATA DE ENTR./SAÍDA</span>
-                                <span class="info">[dt_input_output]</span>
+                                <span class="info">@order.Order.DispatchedAt.ToString("dd/MM/yyyy")</span>
                             </td>
                         </tr>
                         <tr>
@@ -202,19 +196,19 @@
                                         <tr>
                                             <td>
                                                 <span class="nf-label">MUNICÍPIO</span>
-                                                <span class="info">[ds_client_city_name]</span>
+                                                <span class="info">@Html.DisplayFor(model => order.Order.DestinationCity)</span>
                                             </td>
                                             <td style="width: 34mm">
                                                 <span class="nf-label">FONE/FAX</span>
-                                                <span class="info">[nl_client_phone_number]</span>
+                                                <span class="info">--</span>
                                             </td>
                                             <td style="width: 28mm">
                                                 <span class="nf-label">UF</span>
-                                                <span class="info">[ds_client_uf]</span>
+                                                <span class="info">@Html.DisplayFor(model => order.Order.DestinationUF)</span>
                                             </td>
                                             <td style="width: 51mm">
                                                 <span class="nf-label">INSCRIÇÃO ESTADUAL</span>
-                                                <span class="info">[ds_client_ie]</span>
+                                                <span class="info">--</span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -222,18 +216,11 @@
                             </td>
                             <td>
                                 <span class="nf-label">HORA ENTR./SAÍDA</span>
-                                <span id="info">[hr_input_output]</span>
+                                <span id="info">@order.Order.DispatchedAt.ToString("HH:mm")</span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <!-- Fatura -->
-                <div class="boxFatura">
-                    <p class="area-name">Fatura</p>
-                    [duplicates]
-                </div>
-
-                <!-- Calculo do Imposto -->
                 <p class="area-name">Calculo do imposto</p>
                 <div class="wrapper-table">
                     <table cellpadding="0" cellspacing="0" border="1" class="boxImposto">
@@ -241,19 +228,19 @@
                             <tr>
                                 <td>
                                     <span class="nf-label label-small">BASE DE CÁLC. DO ICMS</span>
-                                    <span class="info">[tot_bc_icms]</span>
+                                    <span class="info">--</span>
                                 </td>
                                 <td>
                                     <span class="nf-label">VALOR DO ICMS</span>
-                                    <span class="info">[tot_icms]</span>
+                                    <span class="info">--</span>
                                 </td>
                                 <td>
                                     <span class="nf-label label-small" style="font-size: 4pt;">BASE DE CÁLC. DO ICMS ST</span>
-                                    <span class="info">[tot_bc_icms_st]</span>
+                                    <span class="info">--</span>
                                 </td>
                                 <td>
                                     <span class="nf-label">VALOR DO ICMS ST</span>
-                                    <span class="info">[tot_icms_st]</span>
+                                    <span class="info">--</span>
                                 </td>
                                 <td>
                                     <span class="nf-label label-small">V. IMP. IMPORTAÇÃO</span>
@@ -265,7 +252,7 @@
                                 </td>
                                 <td>
                                     <span class="nf-label">VALOR DO FCP</span>
-                                    <span class="info">[tot_icms_fcp]</span>
+                                    <span class="info">--</span>
                                 </td>
                                 <td>
                                     <span class="nf-label">VALOR DO PIS</span>
@@ -273,29 +260,29 @@
                                 </td>
                                 <td>
                                     <span class="nf-label label-small">V. TOTAL DE PRODUTOS</span>
-                                    <span class="info">[vl_total_prod]</span>
+                                    <span class="info">--</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <span class="nf-label">VALOR DO FRETE</span>
-                                    <span class="info">[vl_shipping]</span>
+                                    <span class="info">--</span>
                                 </td>
                                 <td>
                                     <span class="nf-label">VALOR DO SEGURO</span>
-                                    <span class="info">[vl_insurance]</span>
+                                    <span class="info">--</span>
                                 </td>
                                 <td>
                                     <span class="nf-label">DESCONTO</span>
-                                    <span class="info">[vl_discount]</span>
+                                    <span class="info">--</span>
                                 </td>
                                 <td>
                                     <span class="nf-label">OUTRAS DESP.</span>
-                                    <span class="info">[vl_other_expense]</span>
+                                    <span class="info">--</span>
                                 </td>
                                 <td>
                                     <span class="nf-label">VALOR DO IPI</span>
-                                    <span class="info">[tot_total_ipi_tax]</span>
+                                    <span class="info">--</span>
                                 </td>
                                 <td>
                                     <span class="nf-label">V. ICMS UF DEST.</span>
@@ -303,7 +290,7 @@
                                 </td>
                                 <td>
                                     <span class="nf-label label-small">V. APROX. DO TRIBUTO</span>
-                                    <span class="info">{ApproximateTax}</span>
+                                    <span class="info">--</span>
                                 </td>
                                 <td>
                                     <span class="nf-label label-small">VALOR DA CONFINS</span>
@@ -311,7 +298,7 @@
                                 </td>
                                 <td>
                                     <span class="nf-label label-small">V. TOTAL DA NOTA</span>
-                                    <span class="info">[vl_total]</span>
+                                    <span class="info">@Html.DisplayFor(model => order.Order.TotalValue)</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -329,22 +316,22 @@
                             <td class="freteConta" style="width: 32mm">
                                 <span class="nf-label">FRETE POR CONTA</span>
                                 <div class="border">
-                                    <span class="info">[ds_transport_code_shipping_type]</span>
+                                    <span class="info">--</span>
                                 </div>
                                 <p>0 - Emitente</p>
                                 <p>1 - Destinatário</p>
                             </td>
                             <td style="width: 17.3mm">
                                 <span class="nf-label">CÓDIGO ANTT</span>
-                                <span class="info">[ds_transport_rntc]</span>
+                                <span class="info">--</span>
                             </td>
                             <td style="width: 24.5mm">
                                 <span class="nf-label">PLACA</span>
-                                <span class="info">[ds_transport_vehicle_plate]</span>
+                                <span class="info">@Html.DisplayFor(model => order.Order.VehiclePlate)</span>
                             </td>
                             <td style="width: 11.3mm">
                                 <span class="nf-label">UF</span>
-                                <span class="info">[ds_transport_vehicle_uf]</span>
+                                <span class="info">--</span>
                             </td>
                             <td style="width: 29.5mm">
                                 <span class="nf-label">CNPJ/CPF</span>
@@ -371,7 +358,7 @@
                             </td>
                             <td style="width: 51.4mm">
                                 <span class="nf-label">INSC. ESTADUAL</span>
-                                <span class="info">[ds_transport_ie]</span>
+                                <span class="info">--</span>
                             </td>
                         </tr>
                     </tbody>
@@ -381,19 +368,19 @@
                         <tr>
                             <td class="field quantidade">
                                 <span class="nf-label">QUANTIDADE</span>
-                                <span class="content-spacer info">[nu_transport_amount_transported_volumes]</span>
+                                <span class="content-spacer info">--</span>
                             </td>
                             <td style="width: 31.4mm">
                                 <span class="nf-label">ESPÉCIE</span>
-                                <span class="info">[ds_transport_type_volumes_transported]</span>
+                                <span class="info">--</span>
                             </td>
                             <td style="width: 31mm">
                                 <span class="nf-label">MARCA</span>
-                                <span class="info">[ds_transport_mark_volumes_transported]</span>
+                                <span class="info">--</span>
                             </td>
                             <td style="width: 31.5mm">
                                 <span class="nf-label">NUMERAÇÃO</span>
-                                <span class="info">[ds_transport_number_volumes_transported]</span>
+                                <span class="info">--</span>
                             </td>
                             <td style="width: 31.5mm">
                                 <span class="nf-label">PESO BRUTO</span>
@@ -428,32 +415,28 @@
                                 <th class="aliqIpi">ALIQ.IPI</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            [items]
-                        </tbody>
                     </table>
                 </div>
 
-                <!-- Calculo de ISSQN -->
                 <p class="area-name">Calculo do issqn</p>
                 <table cellpadding="0" cellspacing="0" border="1" class="boxIssqn">
                     <tbody>
                         <tr>
                             <td class="field inscrMunicipal">
                                 <span class="nf-label">INSCRIÇÃO MUNICIPAL</span>
-                                <span class="info txt-center">[ds_company_im]</span>
+                                <span class="info txt-center">--</span>
                             </td>
                             <td class="field valorTotal">
                                 <span class="nf-label">VALOR TOTAL DOS SERVIÇOS</span>
-                                <span class="info txt-right">[vl_total_serv]</span>
+                                <span class="info txt-right">--</span>
                             </td>
                             <td class="field baseCalculo">
                                 <span class="nf-label">BASE DE CÁLCULO DO ISSQN</span>
-                                <span class="info txt-right">[tot_bc_issqn]</span>
+                                <span class="info txt-right">--</span>
                             </td>
                             <td class="field valorIssqn">
                                 <span class="nf-label">VALOR DO ISSQN</span>
-                                <span class="info txt-right">[tot_issqn]</span>
+                                <span class="info txt-right">--</span>
                             </td>
                         </tr>
                     </tbody>
@@ -466,7 +449,7 @@
                         <tr>
                             <td class="field infoComplementar">
                                 <span class="nf-label">INFORMAÇÕES COMPLEMENTARES</span>
-                                <span>[ds_additional_information]</span>
+                                <span>--</span>
                             </td>
                             <td class="field reservaFisco" style="width: 85mm; height: 24mm">
                                 <span class="nf-label">RESERVA AO FISCO</span>
