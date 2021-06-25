@@ -31,11 +31,11 @@ namespace Domains.Handlers.Queries.CompanyHandlers
 
                 var query = _orderRepository.Read(request.CompanyId);
 
-                if (!query.Any())
-                    return Task.FromResult(new GenericQueryResult(404, "Esta empresa ainda não tem nenhuma entrega cadastrada nem finalizada!", null));
-
                 if (request.Year <= 2000 || request.Year > DateTime.Now.Year)
                     return Task.FromResult(new GenericQueryResult(400, "Ano inválido!", null));
+
+                if (!query.Any())
+                    return Task.FromResult(new GenericQueryResult(404, null, null));
 
                 if (request.Month != null)
                 {
@@ -120,13 +120,13 @@ namespace Domains.Handlers.Queries.CompanyHandlers
                     occurrencesGraph = new GetDashboardDataResponse("occurrence", "hsl(36, 99%, 56%)", SetNoDataByMonth(GenerateGraphAreaByMonth(occurrences)));
                 }
 
-                var notesCount = orders.Select(o => o.Count).Count();
-                var finishedsWithSuccessCount = finishedsWithSuccess.Select(o => o.Count).Count();
-                var finishedsWithSuccessPercentage = Math.Round( (decimal) finishedsWithSuccess.Count() * 100 / notesCount) + "%";
-                var finishedsWithDevolutionCount = finishedsWithDevolution.Select(o => o.Count).Count();
-                var finishedsWithDevolutionPercentage = Math.Round( (decimal) finishedsWithDevolution.Count() * 100 / notesCount) + "%";
-                var occurrencesCount = occurrences.Select(o => o.Count).Count();
-                var occurrencesAverage = Math.Round((decimal) occurrencesCount / notesCount, 2);
+                var notesCount = orders.Select(o => o.Count).Sum();
+                var finishedsWithSuccessCount = finishedsWithSuccess.Select(o => o.Count).Sum();
+                var finishedsWithSuccessPercentage = Math.Round( (decimal) finishedsWithSuccessCount * 100 / (notesCount == 0 ? 1 : notesCount)) + "%";
+                var finishedsWithDevolutionCount = finishedsWithDevolution.Select(o => o.Count).Sum();
+                var finishedsWithDevolutionPercentage = Math.Round( (decimal) finishedsWithDevolutionCount * 100 / (notesCount == 0 ? 1 : notesCount)) + "%";
+                var occurrencesCount = occurrences.Select(o => o.Count).Sum();
+                var occurrencesAverage = Math.Round((decimal) occurrencesCount / (notesCount == 0 ? 1 : notesCount), 2);
 
                 return Task.FromResult(new GenericQueryResult(200, null, new { Graphs = new[] { ordersGraph, finishedsWithSuccessGraph, finishedsWithDevolutionGraph, occurrencesGraph }, notesCount, finishedsWithSuccessCount, finishedsWithSuccessPercentage, finishedsWithDevolutionCount, finishedsWithDevolutionPercentage, occurrencesCount, occurrencesAverage}));
             }
@@ -158,7 +158,7 @@ namespace Domains.Handlers.Queries.CompanyHandlers
             return graphAreas;
         }
 
-        private List<GraphAreas> SetNoDataByMonth(List<GraphAreas> graphAreas)
+        private static List<GraphAreas> SetNoDataByMonth(List<GraphAreas> graphAreas)
         {
             for (int i = 1; i <= 12; i++)
             {
@@ -246,7 +246,7 @@ namespace Domains.Handlers.Queries.CompanyHandlers
             return graphAreas;
         }
 
-        private List<GraphAreas> SetNoDataByWeek(List<GraphAreas> graphAreas, int totalDays)
+        private static List<GraphAreas> SetNoDataByWeek(List<GraphAreas> graphAreas, int totalDays)
         {
             if (!graphAreas.Any(g => g.X == "1-7"))
                 graphAreas.Add(new GraphAreas("1-7", 0));

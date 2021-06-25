@@ -89,7 +89,7 @@ namespace Domains.Handlers.Queries.CompanyHandlers
             return new GetShippersResponse(
                 shipper.Id,
                 EnumServices.GetDescription(shipper.ShipperHasCompanies.FirstOrDefault(shc => shc.CompanyId == companyId).ShipperRole),
-                shipper.UserId == userId ? "Eu" : shipper.User.Name,
+                shipper.UserId == userId ? shipper.User.Name + " (Eu)" : shipper.User.Name,
                 shipper.ShipperHasCompanies.FirstOrDefault(shc => shc.CompanyId == companyId).CreatedAt.ToString("dd/MM/yyyy")
             );
         }

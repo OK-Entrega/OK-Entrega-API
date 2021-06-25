@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nfeProc versao="2.00" xmlns="http://www.portalfiscal.inf.br/nfe">
+    <NFe>
+        <infNFe>
+            <ide>
+                <!--ModelNFE-->
+                <mod>55</mod> <!--2 dígitos--> <!--Não mexer-->
+                <!--Series-->
+                <serie>035</serie> <!--3 dígitos-->
+                <!--Number-->
+                <nNF>288000000</nNF> <!--9 dígitos-->
+                <!--NatureOperation-->
+                <natOp>Venda de mercadoria</natOp> <!--30 dígitos--> <!--Não mexer-->
+                <!--EnIssueType-->
+                <tpEmis>4</tpEmis> <!--1 dígito--> <!--Não mexer-->
+                <!--NumericCode-->
+                <cNF>88888888</cNF> <!--8 dígitos-->
+                <!--IssuedAt-->
+                <dEmi>2018-12-18T16:30:00</dEmi> <!--4 dígitos (AAMM)-->
+                <!--DispatchedAt-->
+                <dSaiEnt>2018-12-23T17:20:00:00</dSaiEnt>
+                <!--UFIssuerCode-->
+                <cUF>61</cUF> <!--2 dígitos-->
+                <!--VerifyingDigit-->
+                <cDV>8</cDV> <!--1 dígito-->
+            </ide>
+
+            <emit>
+                <!--Company.CNPJ-->
+                <CNPJ>02391666000101</CNPJ> <!--14 dígitos-->
+                <!--Company.Name-->
+                <xNome> F-vendas Madeira Oobj</xNome> <!--40 dígitos-->
+                <enderEmit>
+                    <!--IssuerCEP-->
+                    <CEP>09556000</CEP> <!--8 dígitos-->
+                    <!--IssuerAdress-->
+                    <xLgr>Av. Eng. Oscar Americano</xLgr> 
+                    <!--IssuerNumber-->
+                    <nro>888</nro>
+                    <!--IssuerComplement-->
+                    <xCpl>I</xCpl>
+                    <!--IssuerDistrict-->
+                    <xBairro>Morumbi</xBairro>
+                    <!--IssuerUF-->
+                    <UF>SP</UF>
+                    <!--IssuerCity-->
+                    <xMun>São Paulo</xMun>
+                </enderEmit>
+            </emit>
+
+            <dest>
+                <!--ReceiverName-->
+                <xNome>Calcário</xNome> <!--40 dígitos-->
+                <!--ReceiverCNPJ-->
+                <CNPJ>02391666000101</CNPJ> <!--14 dígitos-->
+
+                <enderDest>
+                    <!--DestinationCEP-->
+                    <CEP>09556000</CEP>
+                    <!--DestinationAdress-->
+                    <xLgr>Av. Eng. Oscar Americano</xLgr>
+                    <!--DestinationNumber-->
+                    <nro>888</nro>
+                    <!--DestinationComplement-->
+                    <xCpl>I</xCpl>
+                    <!--DestinationDistrict-->
+                    <xBairro>Morumbi</xBairro>
+                    <!--DestinationUF-->
+                    <UF>SP</UF>
+                    <!--DestinationCity-->
+                    <xMun>São Paulo</xMun>
+                </enderDest>
+            </dest>
+
+            <det nItem='9'>
+                <prod>
+                    <!--CFOP-->
+                    <CFOP>9234</CFOP> <!--4 dígitos-->
+                </prod>
+            </det>
+            <total>
+                <!--TotalValue-->
+                <valTot>2000.80</valTot> <!--Com pontos-->
+            </total>
+            <transp>
+                <!--CarrierName-->
+                <xNome>Teste08</xNome> <!--40 dígitos-->
+                <!--CarrierCNPJ-->
+                <CNPJ>02391666000101</CNPJ> <!--14 dígitos-->
+                <!--VehicleType-->
+                <tpVei>0</tpVei> <!--0-Caminhão, 1-Van, 2-Moto, 3-Navio, 4-Outro--> 
+                <!--VehiclePlate-->
+                <plVei>QPR6H28</plVei> <!--7 dígitos-->
+                <vol>
+                    <!--Weight-->
+                    <pesoB>99.10</pesoB>
+                </vol>
+            </transp>
+        </infNFe>
+    </NFe>
+</nfeProc>

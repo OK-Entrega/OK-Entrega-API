@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nfeProc versao="2.00" xmlns="http://www.portalfiscal.inf.br/nfe">
+    <NFe>
+        <infNFe>
+            <ide>
+                <!--ModelNFE-->
+                <mod>55</mod> <!--2 dígitos--> <!--Não mexer-->
+                <!--Series-->
+                <serie>033</serie> <!--3 dígitos-->
+                <!--Number-->
+                <nNF>266000000</nNF> <!--9 dígitos-->
+                <!--NatureOperation-->
+                <natOp>Venda de mercadoria</natOp> <!--30 dígitos--> <!--Não mexer-->
+                <!--EnIssueType-->
+                <tpEmis>4</tpEmis> <!--1 dígito--> <!--Não mexer-->
+                <!--NumericCode-->
+                <cNF>66666666</cNF> <!--8 dígitos-->
+                <!--IssuedAt-->
+                <dEmi>2016-10-16T16:30:00</dEmi> <!--4 dígitos (AAMM)-->
+                <!--DispatchedAt-->
+                <dSaiEnt>2016-10-21T17:20:00:00</dSaiEnt>
+                <!--UFIssuerCode-->
+                <cUF>59</cUF> <!--2 dígitos-->
+                <!--VerifyingDigit-->
+                <cDV>6</cDV> <!--1 dígito-->
+            </ide>
+
+            <emit>
+                <!--Company.CNPJ-->
+                <CNPJ>09179444000101</CNPJ> <!--14 dígitos-->
+                <!--Company.Name-->
+                <xNome> D-vendas Chinelos Oobj</xNome> <!--40 dígitos-->
+                <enderEmit>
+                    <!--IssuerCEP-->
+                    <CEP>07334000</CEP> <!--8 dígitos-->
+                    <!--IssuerAdress-->
+                    <xLgr>Av.Ver. João de Luca</xLgr> 
+                    <!--IssuerNumber-->
+                    <nro>666</nro>
+                    <!--IssuerComplement-->
+                    <xCpl>G</xCpl>
+                    <!--IssuerDistrict-->
+                    <xBairro>CENTRO</xBairro>
+                    <!--IssuerUF-->
+                    <UF>SP</UF>
+                    <!--IssuerCity-->
+                    <xMun>Ademar</xMun>
+                </enderEmit>
+            </emit>
+
+            <dest>
+                <!--ReceiverName-->
+                <xNome>Chinelos</xNome> <!--40 dígitos-->
+                <!--ReceiverCNPJ-->
+                <CNPJ>09179444000101</CNPJ> <!--14 dígitos-->
+
+                <enderDest>
+                    <!--DestinationCEP-->
+                    <CEP>07334000</CEP>
+                    <!--DestinationAdress-->
+                    <xLgr>Av.Ver. João de Luca</xLgr>
+                    <!--DestinationNumber-->
+                    <nro>666</nro>
+                    <!--DestinationComplement-->
+                    <xCpl>G</xCpl>
+                    <!--DestinationDistrict-->
+                    <xBairro>CENTRO</xBairro>
+                    <!--DestinationUF-->
+                    <UF>SP</UF>
+                    <!--DestinationCity-->
+                    <xMun>Ademar</xMun>
+                </enderDest>
+            </dest>
+
+            <det nItem='7'>
+                <prod>
+                    <!--CFOP-->
+                    <CFOP>7234</CFOP> <!--4 dígitos-->
+                </prod>
+            </det>
+            <total>
+                <!--TotalValue-->
+                <valTot>30.80</valTot> <!--Com pontos-->
+            </total>
+            <transp>
+                <!--CarrierName-->
+                <xNome>Teste06</xNome> <!--40 dígitos-->
+                <!--CarrierCNPJ-->
+                <CNPJ>09179444000101</CNPJ> <!--14 dígitos-->
+                <!--VehicleType-->
+                <tpVei>2</tpVei> <!--0-Caminhão, 1-Van, 2-Moto, 3-Navio, 4-Outro--> 
+                <!--VehiclePlate-->
+                <plVei>JKL4G26</plVei> <!--7 dígitos-->
+                <vol>
+                    <!--Weight-->
+                    <pesoB>1.70</pesoB>
+                </vol>
+            </transp>
+        </infNFe>
+    </NFe>
+</nfeProc>

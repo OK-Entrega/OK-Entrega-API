@@ -45,7 +45,7 @@ namespace Domains.Handlers.Commands.CompanyHandlers
 
                 _companyRepository.Update(company);
 
-                MessageServices.SendEmail(shipper.Email, $"Removido da empresa {company.Name}!", $"<p style='color: black; font-weight: bold'>Olá, {shipper.User.Name}!<br> Infelizmente, decidiram remover você da empresa {company.Name}. Achamos que seria melhor avisar!</p>");
+                //MessageServices.SendEmail(shipper.Email, $"Removido da empresa {company.Name}!", $"<p style='color: black; font-weight: bold'>Olá, {shipper.User.Name}!<br> Infelizmente, decidiram remover você da empresa {company.Name}. Achamos que seria melhor avisar!</p>");
 
                 return Task.FromResult(new GenericCommandResult(200, $"{shipper.User.Name} expulso com sucesso!", null));
             }

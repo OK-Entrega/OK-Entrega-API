@@ -42,7 +42,7 @@ namespace Domains.Handlers.Commands.UserHandlers
 
                     _userRepository.Update(user);
 
-                    MessageServices.SendEmail(request.NewEmail, "Verificação de email", $"<p style='color: black; font-weight: bold'>Olá, {user.Name}!<br> Para sua segurança, antes de redefinirmos seu email, precisamos que você insira este código de 4 dígitos na tela que aparece no sistema!</p><br><p style='text-align: center; font-weight: bold; color: #2ecc71'>{user.Shipper.CodeEmail}</p>");
+                    MessageServices.SendEmail(request.NewEmail, "Verificação de email", $"<p style='color: black; font-weight: bold'>Olá, {user.Name}!<br> Para sua segurança, antes de redefinirmos seu email, precisamos que você insira este código de 4 dígitos na tela que aparece no sistema!</p><br><p style='text-align: center; font-weight: bold; color: #2ecc71'>{user.Shipper.CodeEmail.Substring(0, 4)}</p>");
 
                     return Task.FromResult(new GenericCommandResult(200, $"Para sua segurança, um código de 4 dígitos será enviado para {request.NewEmail}. Insira este código no campo abaixo e após isso redefiniremos o seu email!", null));
                 }
@@ -60,7 +60,7 @@ namespace Domains.Handlers.Commands.UserHandlers
 
                     _userRepository.Update(user);
 
-                    MessageServices.SendSMS(request.NewCellphoneNumber, $"Olá, {user.Name}! Para sua segurança, antes de redefinirmos seu número de celular, precisamos que você insira este código de 4 dígitos na tela que aparece no sistema! Código: {user.Deliverer.CodeCellphoneNumber}");
+                    MessageServices.SendSMS(request.NewCellphoneNumber, $"Olá, {user.Name}! Para sua segurança, antes de redefinirmos seu número de celular, precisamos que você insira este código de 4 dígitos na tela que aparece no sistema! Código: {user.Deliverer.CodeCellphoneNumber.Substring(0, 4)}");
 
                     return Task.FromResult(new GenericCommandResult(200, $"Para sua segurança, um código de 4 dígitos será enviado para {request.NewCellphoneNumber}. Insira este código no campo abaixo e após isso redefiniremos o seu número de celular!", null));
                 }

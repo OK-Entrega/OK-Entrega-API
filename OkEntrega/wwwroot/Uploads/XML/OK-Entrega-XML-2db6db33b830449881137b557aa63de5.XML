@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nfeProc versao="2.00" xmlns="http://www.portalfiscal.inf.br/nfe">
+    <NFe>
+        <infNFe>
+            <ide>
+                <!--ModelNFE-->
+                <mod>55</mod> <!--2 dígitos--> <!--Não mexer-->
+                <!--Series-->
+                <serie>030</serie> <!--3 dígitos-->
+                <!--Number-->
+                <nNF>233000000</nNF> <!--9 dígitos-->
+                <!--NatureOperation-->
+                <natOp>Venda de mercadoria</natOp> <!--30 dígitos--> <!--Não mexer-->
+                <!--EnIssueType-->
+                <tpEmis>4</tpEmis> <!--1 dígito--> <!--Não mexer-->
+                <!--NumericCode-->
+                <cNF>33333333</cNF> <!--8 dígitos-->
+                <!--IssuedAt-->
+                <dEmi>2013-07-13T12:30:00</dEmi> <!--4 dígitos (AAMM)-->
+                <!--DispatchedAt-->
+                <dSaiEnt>2013-07-15T16:20:00:00</dSaiEnt>
+                <!--UFIssuerCode-->
+                <cUF>56</cUF> <!--2 dígitos-->
+                <!--VerifyingDigit-->
+                <cDV>3</cDV> <!--1 dígito-->
+            </ide>
+
+            <emit>
+                <!--Company.CNPJ-->
+                <CNPJ>06846999000101</CNPJ> <!--14 dígitos-->
+                <!--Company.Name-->
+                <xNome> A-vendas Bijoteria Oobj</xNome> <!--40 dígitos-->
+                <enderEmit>
+                    <!--IssuerCEP-->
+                    <CEP>74993000</CEP> <!--8 dígitos-->
+                    <!--IssuerAdress-->
+                    <xLgr>Eldorado</xLgr> 
+                    <!--IssuerNumber-->
+                    <nro>333</nro>
+                    <!--IssuerComplement-->
+                    <xCpl>D</xCpl>
+                    <!--IssuerDistrict-->
+                    <xBairro>CENTRO</xBairro>
+                    <!--IssuerUF-->
+                    <UF>SP</UF>
+                    <!--IssuerCity-->
+                    <xMun>Diadema</xMun>
+                </enderEmit>
+            </emit>
+
+            <dest>
+                <!--ReceiverName-->
+                <xNome>Notebook</xNome> <!--40 dígitos-->
+                <!--ReceiverCNPJ-->
+                <CNPJ>06846999000101</CNPJ> <!--14 dígitos-->
+
+                <enderDest>
+                    <!--DestinationCEP-->
+                    <CEP>74993000</CEP>
+                    <!--DestinationAdress-->
+                    <xLgr>Eldorado</xLgr>
+                    <!--DestinationNumber-->
+                    <nro>333</nro>
+                    <!--DestinationComplement-->
+                    <xCpl>D</xCpl>
+                    <!--DestinationDistrict-->
+                    <xBairro>CENTRO</xBairro>
+                    <!--DestinationUF-->
+                    <UF>SP</UF>
+                    <!--DestinationCity-->
+                    <xMun>Diadema</xMun>
+                </enderDest>
+            </dest>
+
+            <det nItem='4'>
+                <prod>
+                    <!--CFOP-->
+                    <CFOP>4234</CFOP> <!--4 dígitos-->
+                </prod>
+            </det>
+            <total>
+                <!--TotalValue-->
+                <valTot>2500.80</valTot> <!--Com pontos-->
+            </total>
+            <transp>
+                <!--CarrierName-->
+                <xNome>Teste03</xNome> <!--40 dígitos-->
+                <!--CarrierCNPJ-->
+                <CNPJ>34765098439345</CNPJ> <!--14 dígitos-->
+                <!--VehicleType-->
+                <tpVei>1</tpVei> <!--0-Caminhão, 1-Van, 2-Moto, 3-Navio, 4-Outro--> 
+                <!--VehiclePlate-->
+                <plVei>DEF2E24</plVei> <!--7 dígitos-->
+                <vol>
+                    <!--Weight-->
+                    <pesoB>60.70</pesoB>
+                </vol>
+            </transp>
+        </infNFe>
+    </NFe>
+</nfeProc>

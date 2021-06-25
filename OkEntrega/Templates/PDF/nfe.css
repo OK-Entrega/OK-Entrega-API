@@ -11,6 +11,7 @@
 
 * {
     margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .ui-widget-content {
@@ -26,20 +27,19 @@
 }
 
 .nfeArea.page {
-    width: 18cm;
+    width: 90%;
     position: relative;
-    font-family: "Times New Roman", serif;
     color: #000;
     margin: 0 auto;
     overflow: hidden;
 }
 
 .nfeArea .font-12 {
-    font-size: 12pt;
+    font-size: 13pt;
 }
 
 .nfeArea .font-8 {
-    font-size: 8pt;
+    font-size: 9pt;
 }
 
 .nfeArea .bold {
@@ -47,11 +47,10 @@
 }
 /* == TABELA == */
 .nfeArea .area-name {
-    font-family: "Times New Roman", serif;
     color: #000;
     font-weight: bold;
     margin: 5px 0 0;
-    font-size: 6pt;
+    font-size: 7pt;
     text-transform: uppercase;
 }
 
@@ -75,20 +74,19 @@
 
     .nfeArea .nf-label.label-small {
         letter-spacing: -0.5px;
-        font-size: 4pt;
+        font-size: 5pt;
     }
 
 .nfeArea .info {
     font-weight: bold;
-    font-size: 8pt;
+    font-size: 9pt;
     display: block;
     line-height: 1em;
 }
 
 .nfeArea table {
-    font-family: "Times New Roman", serif;
     color: #000;
-    font-size: 5pt;
+    font-size: 6pt;
     border-collapse: collapse;
     width: 100%;
     border-color: #000;
@@ -119,7 +117,7 @@
 .nfeArea .tserie {
     width: 32.2mm;
     vertical-align: middle;
-    font-size: 8pt;
+    font-size: 9pt;
     font-weight: bold;
 }
 
@@ -165,7 +163,7 @@
 }
 
 .nfeArea .title {
-    font-size: 10pt;
+    font-size: 11pt;
     margin-bottom: 2mm;
 }
 
@@ -207,7 +205,7 @@
     }
 
     .nfeArea .boxImposto .nf-label {
-        font-size: 5pt;
+        font-size: 6pt;
     }
 
     .nfeArea .boxImposto .info {
@@ -275,8 +273,7 @@
 }
 
 .page .boxFields td p {
-    font-family: "Times New Roman", serif;
-    font-size: 5pt;
+    font-size: 6pt;
     line-height: 1.2em;
     color: #000;
 }
@@ -319,8 +316,8 @@
     display: block;
 }
 
-.nfeArea .page-break {
-    page-break-before: always;
+.page-break {
+    page-break-after: always;
 }
 
 .nfeArea .block {
@@ -328,7 +325,6 @@
 }
 
 .label-mktup {
-    font-family: Arial !important;
     font-size: 8px !important;
     padding-top: 8px !important;
 }

@@ -1,6 +1,7 @@
 ﻿using Commom.Commands;
 using Commom.Services.PDFServices.Interfaces;
 using Domains.Commands.Requests.OrderRequests;
+using Domains.Commands.Responses.OrderResponses;
 using Domains.Entities;
 using Domains.Queries.Requests.OrderRequests;
 using MediatR;
@@ -70,7 +71,7 @@ namespace API.Controllers
             {
                 var result = await _mediator.Send(request);
 
-                var pdf = _pdfGenerator.Generate((List<Order>) result.Data, "NFE").Result;
+                var pdf = _pdfGenerator.Generate((List<PrintOrdersResponse>) result.Data, "NFE").Result;
 
                 return result.StatusCode switch
                 {

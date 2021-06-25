@@ -37,7 +37,7 @@ namespace Domains.Handlers.Commands.CompanyHandlers
                             return Task.FromResult(new GenericCommandResult(400, "Você precisa passar seu privilégio de criador para alguém antes de sair da empresa!", null));
                         company.CompanyHasShippers.FirstOrDefault(s => s.ShipperId == request.ShipperId).ChangeShipperRole(EnShipperRole.Creator);
                         var newCreator = company.CompanyHasShippers.FirstOrDefault(s => s.ShipperId == request.ShipperId).Shipper;
-                        MessageServices.SendEmail(newCreator.Email, $"Promovido na empresa {company.Name}!", $"<p style='color: black; font-weight: bold'>Olá, {newCreator.User.Name}!<br> Parabéns! Você foi promovido para Criador da empresa {company.Name}</p>");
+                        //MessageServices.SendEmail(newCreator.Email, $"Promovido na empresa {company.Name}!", $"<p style='color: black; font-weight: bold'>Olá, {newCreator.User.Name}!<br> Parabéns! Você foi promovido para Criador da empresa {company.Name}</p>");
                     }
                     else
                     {

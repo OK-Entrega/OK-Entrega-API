@@ -1,4 +1,4 @@
-﻿@model List<Domains.Entities.Order>
+﻿@model List<Domains.Commands.Responses.OrderResponses.PrintOrdersResponse>
 @{
     Layout = null;
 }
@@ -15,21 +15,20 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     </head>
+
     <body>
         <div class="page nfeArea">
-            <img class="imgCanceled" src="tarja_nf_cancelada.png" alt="" />
-            <img class="imgNull" src="tarja_nf_semvalidade.png" alt="" />
             <div class="boxFields" style="padding-top: 20px;">
                 <table cellpadding="0" cellspacing="0" border="1">
                     <tbody>
                         <tr>
                             <td colspan="2" class="txt-upper">
-                                Recebemos de [issue-company-name] os produtos e serviços constantes na nota fiscal indicada ao lado
+                                Recebemos de @Html.DisplayFor(model => order.Order.Company.Name) os produtos e serviços constantes na nota fiscal indicada ao lado
                             </td>
                             <td rowspan="2" class="tserie txt-center">
                                 <span class="font-12" style="margin-bottom: 5px;">NF-e</span>
-                                <span>Nº [ds_invoice-number]</span>
-                                <span>Série [ds_invoice_serie]</span>
+                                <span>Nº @Html.DisplayFor(model => order.Order.Number) </span>
+                                <span>Série @Html.DisplayFor(model => order.Order.Series) </span>
                             </td>
                         </tr>
                         <tr>
@@ -50,13 +49,13 @@
                                 <img class="client_logo" src="[url_logo]" alt="" onerror=" javascript:this.src='data:image/png;base64," />
                             </td>
                             <td rowspan="3" style="width: 46mm; font-size: 7pt;" class="txt-center">
-                                <span class="mb2 bold block">[ds_company_issuer_name]</span>
+                                <span class="mb2 bold block">@Html.DisplayFor(model => order.Order.Company.Name)</span>
                                 <span class="block">[ds_company_address]</span>
                                 <span class="block">
-                                    [ds_company_neighborhood] - [nu_company_cep]
+                                    [ds_company_neighborhood] - @Html.DisplayFor(model => order.Order.IssuerCEP)
                                 </span>
                                 <span class="block">
-                                    [ds_company_city_name] - [ds_company_uf]- Fone: [nl_company_phone_number]
+                                    @Html.DisplayFor(model => order.Order.Company.Name) - @Html.DisplayFor(model => order.Order.IssuerUF)- Fone: @Html.DisplayFor(model => order.Order.Number)
                                 </span>
                             </td>
                             <td rowspan="3" class="txtc txt-upper" style="width: 34mm; height: 29.5mm;">
@@ -74,11 +73,11 @@
                                 <p>
                                     <span class="block bold">
                                         <span>Nº</span>
-                                        <span>[nl_invoice]</span>
+                                        <span>@Html.DisplayFor(model => order.Order.Number)</span>
                                     </span>
                                     <span class="block bold">
                                         <span>SÉRIE:</span>
-                                        <span>[ds_invoice_serie]</span>
+                                        <span>@Html.DisplayFor(model => order.Order.Series)</span>
                                     </span>
                                     <span class="block">
                                         <span>Página</span>
@@ -90,13 +89,15 @@
                             </td>
                             <td class="txt-upper" style="width: 85mm;">
                                 <span class="nf-label">Controle do Fisco</span>
-                                <span class="codigo">{BarCode}</span>
+                                <div style="width: 100%; display: flex; justify-content: center; overflow: hidden">
+                                    <img src=@order.BarCode style="width: 500px" />
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <span class="nf-label">CHAVE DE ACESSO</span>
-                                <span class="bold block txt-center info">[ds_danfe]</span>
+                                <span class="bold block txt-center info">@Html.DisplayFor(model => order.Order.AccessKey)</span>
                             </td>
                         </tr>
                         <tr>
@@ -136,7 +137,7 @@
                             </td>
                             <td style="width: 64.3mm">
                                 <span class="nf-label">CNPJ</span>
-                                <span class="info">[nl_company_cnpj_cpf]</span>
+                                <span class="info">@Html.DisplayFor(model => order.Order.Company.CNPJ)</span>
                             </td>
                         </tr>
                     </tbody>
@@ -153,11 +154,11 @@
                                         <tr>
                                             <td>
                                                 <span class="nf-label">NOME/RAZÃO SOCIAL</span>
-                                                <span class="info">[ds_client_receiver_name]</span>
+                                                <span class="info">@Html.DisplayFor(model => order.Order.ReceiverName)</span>
                                             </td>
                                             <td style="width: 40mm">
                                                 <span class="nf-label">CNPJ/CPF</span>
-                                                <span class="info">[nl_client_cnpj_cpf]</span>
+                                                <span class="info">@Html.DisplayFor(model => order.Order.ReceiverCNPJ)</span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -181,7 +182,7 @@
                                                 <span class="nf-label">BAIRRO/DISTRITO</span>
                                                 <span class="info">[ds_client_neighborhood]</span>
                                             </td>
-                                            <td style="width: 37.2 mm">
+                                            <td style="width: 37.2mm">
                                                 <span class="nf-label">CEP</span>
                                                 <span class="info">[nu_client_cep]</span>
                                             </td>
@@ -323,7 +324,7 @@
                         <tr>
                             <td>
                                 <span class="nf-label">RAZÃO SOCIAL</span>
-                                <span class="info">[ds_transport_carrier_name]</span>
+                                <span class="info">@Html.DisplayFor(model => order.Order.CarrierName)</span>
                             </td>
                             <td class="freteConta" style="width: 32mm">
                                 <span class="nf-label">FRETE POR CONTA</span>
@@ -347,7 +348,7 @@
                             </td>
                             <td style="width: 29.5mm">
                                 <span class="nf-label">CNPJ/CPF</span>
-                                <span class="info">[nl_transport_cnpj_cpf]</span>
+                                <span class="info">@Html.DisplayFor(model => order.Order.CarrierCNPJ)</span>
                             </td>
                         </tr>
                     </tbody>
@@ -358,15 +359,15 @@
                         <tr>
                             <td class="field endereco">
                                 <span class="nf-label">ENDEREÇO</span>
-                                <span class="content-spacer info">[ds_transport_address]</span>
+                                <span class="content-spacer info">@Html.DisplayFor(model => order.Order.IssuerAddress)</span>
                             </td>
                             <td style="width: 32mm">
                                 <span class="nf-label">MUNICÍPIO</span>
-                                <span class="info">[ds_transport_city]</span>
+                                <span class="info">@Html.DisplayFor(model => order.Order.IssuerCity)</span>
                             </td>
                             <td style="width: 31mm">
                                 <span class="nf-label">UF</span>
-                                <span class="info">[ds_transport_uf]</span>
+                                <span class="info">@Html.DisplayFor(model => order.Order.IssuerUF)</span>
                             </td>
                             <td style="width: 51.4mm">
                                 <span class="nf-label">INSC. ESTADUAL</span>
@@ -396,11 +397,11 @@
                             </td>
                             <td style="width: 31.5mm">
                                 <span class="nf-label">PESO BRUTO</span>
-                                <span class="info">[vl_transport_gross_weight]</span>
+                                <span class="info">@Html.DisplayFor(model => order.Order.Weight)</span>
                             </td>
                             <td style="width: 32.5mm">
                                 <span class="nf-label">PESO LÍQUIDO</span>
-                                <span class="info">[vl_transport_net_weight]</span>
+                                <span class="info">@Html.DisplayFor(model => order.Order.Weight)</span>
                             </td>
                         </tr>
                     </tbody>
@@ -486,6 +487,7 @@
                 </footer>
             </div>
         </div>
+        <div class="page-break"></div>
     </body>
 </html>
 }

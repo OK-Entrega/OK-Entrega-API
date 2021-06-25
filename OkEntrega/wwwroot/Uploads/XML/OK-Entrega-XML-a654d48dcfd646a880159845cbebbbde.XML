@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nfeProc versao="2.00" xmlns="http://www.portalfiscal.inf.br/nfe">
+    <NFe>
+        <infNFe>
+            <ide>
+                <!--ModelNFE-->
+                <mod>55</mod> <!--2 dígitos--> <!--Não mexer-->
+                <!--Series-->
+                <serie>028</serie> <!--3 dígitos-->
+                <!--Number-->
+                <nNF>211000000</nNF> <!--9 dígitos-->
+                <!--NatureOperation-->
+                <natOp>Venda de mercadoria</natOp> <!--30 dígitos--> <!--Não mexer-->
+                <!--EnIssueType-->
+                <tpEmis>4</tpEmis> <!--1 dígito--> <!--Não mexer-->
+                <!--NumericCode-->
+                <cNF>11111111</cNF> <!--8 dígitos-->
+                <!--IssuedAt-->
+                <dEmi>2011-05-11T10:30:00</dEmi> <!--4 dígitos (AAMM)-->
+                <!--DispatchedAt-->
+                <dSaiEnt>2011-05-13T17:20:00:00</dSaiEnt>
+                <!--UFIssuerCode-->
+                <cUF>54</cUF> <!--2 dígitos-->
+                <!--VerifyingDigit-->
+                <cDV>1</cDV> <!--1 dígito-->
+            </ide>
+
+            <emit>
+                <!--Company.CNPJ-->
+                <CNPJ>04624777000101</CNPJ> <!--14 dígitos-->
+                <!--Company.Name-->
+                <xNome> y-vendas Solucoes Oobj</xNome> <!--40 dígitos-->
+                <enderEmit>
+                    <!--IssuerCEP-->
+                    <CEP>42773000</CEP> <!--8 dígitos-->
+                    <!--IssuerAdress-->
+                    <xLgr>AV. Pinheiros</xLgr> 
+                    <!--IssuerNumber-->
+                    <nro>111</nro>
+                    <!--IssuerComplement-->
+                    <xCpl>B</xCpl>
+                    <!--IssuerDistrict-->
+                    <xBairro>CENTRO</xBairro>
+                    <!--IssuerUF-->
+                    <UF>MG</UF>
+                    <!--IssuerCity-->
+                    <xMun>Ipatinga</xMun>
+                </enderEmit>
+            </emit>
+
+            <dest>
+                <!--ReceiverName-->
+                <xNome>Lamborgine</xNome> <!--40 dígitos-->
+                <!--ReceiverCNPJ-->
+                <CNPJ>04624777000101</CNPJ> <!--14 dígitos-->
+
+                <enderDest>
+                    <!--DestinationCEP-->
+                    <CEP>42773000</CEP>
+                    <!--DestinationAdress-->
+                    <xLgr>AV. Pinheiros</xLgr>
+                    <!--DestinationNumber-->
+                    <nro>111</nro>
+                    <!--DestinationComplement-->
+                    <xCpl>B</xCpl>
+                    <!--DestinationDistrict-->
+                    <xBairro>CENTRO</xBairro>
+                    <!--DestinationUF-->
+                    <UF>MG</UF>
+                    <!--DestinationCity-->
+                    <xMun>Ipatinga</xMun>
+                </enderDest>
+            </dest>
+
+            <det nItem='2'>
+                <prod>
+                    <!--CFOP-->
+                    <CFOP>2234</CFOP> <!--4 dígitos-->
+                </prod>
+            </det>
+            <total>
+                <!--TotalValue-->
+                <valTot>15.80</valTot> <!--Com pontos-->
+            </total>
+            <transp>
+                <!--CarrierName-->
+                <xNome>Teste01</xNome> <!--40 dígitos-->
+                <!--CarrierCNPJ-->
+                <CNPJ>12543876219345</CNPJ> <!--14 dígitos-->
+                <!--VehicleType-->
+                <tpVei>0</tpVei> <!--0-Caminhão, 1-Van, 2-Moto, 3-Navio, 4-Outro--> 
+                <!--VehiclePlate-->
+                <plVei>CBA1D23</plVei> <!--7 dígitos-->
+                <vol>
+                    <!--Weight-->
+                    <pesoB>30.70</pesoB>
+                </vol>
+            </transp>
+        </infNFe>
+    </NFe>
+</nfeProc>

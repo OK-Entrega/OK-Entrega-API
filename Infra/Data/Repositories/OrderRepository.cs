@@ -30,11 +30,9 @@ namespace Infra.Data.Repositories
         {
             return _context
                 .Orders
-                .Include(o => o.Occurrences)
-                .ThenInclude(o => o.Deliverer)
-                .ThenInclude(o => o.User)
-                .Include(o => o.FinishOrder)
-                .ThenInclude(fo => fo.Voucher)
+                .Include(o => o.Occurrences).ThenInclude(o => o.Deliverer).ThenInclude(o => o.User)
+                .Include(o => o.FinishOrder).ThenInclude(fo => fo.Voucher)
+                .Include(o => o.Company)
                 .FirstOrDefault(o => o.Id == id);
         }
 
