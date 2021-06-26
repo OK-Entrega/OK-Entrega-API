@@ -24,6 +24,9 @@ namespace Domains.Handlers.Commands.CompanyHandlers
         {
             try
             {
+                bool grant = false;
+                string name = "";
+
                 var company = _companyRepository.Search(request.CompanyId);
 
                 if (company == null)
@@ -33,10 +36,10 @@ namespace Domains.Handlers.Commands.CompanyHandlers
                 {
                     if (company.CompanyHasShippers.Count > 1)
                     {
-                        if(request.ShipperId == null)
-                            return Task.FromResult(new GenericCommandResult(400, "Você precisa passar seu privilégio de criador para alguém antes de sair da empresa!", null));
-                        company.CompanyHasShippers.FirstOrDefault(s => s.ShipperId == request.ShipperId).ChangeShipperRole(EnShipperRole.Creator);
-                        var newCreator = company.CompanyHasShippers.FirstOrDefault(s => s.ShipperId == request.ShipperId).Shipper;
+                        var newCreator = company.CompanyHasShippers.OrderBy(c => c.CreatedAt).FirstOrDefault();
+                        newCreator.ChangeShipperRole(EnShipperRole.Creator);
+                        grant = true;
+                        name = newCreator.Shipper.User.Name;
                         //MessageServices.SendEmail(newCreator.Email, $"Promovido na empresa {company.Name}!", $"<p style='color: black; font-weight: bold'>Olá, {newCreator.User.Name}!<br> Parabéns! Você foi promovido para Criador da empresa {company.Name}</p>");
                     }
                     else
@@ -49,6 +52,8 @@ namespace Domains.Handlers.Commands.CompanyHandlers
                 var shipperCompany = company.CompanyHasShippers.FirstOrDefault(cs => cs.Shipper.UserId == request.UserId);
                 company.CompanyHasShippers.Remove(shipperCompany);
                 _companyRepository.Update(company);
+                if(grant)
+                    return Task.FromResult(new GenericCommandResult(200, $"Você saiu da empresa {company.Name} com sucesso e agora {name} tem o privilégio de criador dela!", null));
                 return Task.FromResult(new GenericCommandResult(200, $"Você saiu da empresa {company.Name} com sucesso!", null));
             }
             catch (Exception ex)
