@@ -29,8 +29,8 @@ namespace Commom.Services
             image.CopyTo(streamImagem);
 
             if(serverDirectoryPathToo)
-                return "http://localhost:5000/Uploads/Image/" + " " + filePath;
-            return "http://localhost:5000/Uploads/Image/";
+                return "http://localhost:5000/Uploads/Image/" + fileName + " " + filePath;
+            return "http://localhost:5000/Uploads/Image/" + fileName;
         }
     }
 }

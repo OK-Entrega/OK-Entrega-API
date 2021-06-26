@@ -1,5 +1,6 @@
 ﻿using Commom.Commands;
 using Commom.Enum;
+using Commom.Services;
 using Domains.Commands.Requests.CompanyRequests;
 using Domains.Repositories;
 using MediatR;
@@ -29,7 +30,16 @@ namespace Domains.Handlers.Commands.CompanyHandlers
                     return Task.FromResult(new GenericCommandResult(400, "Essa empresa não existe!", null));
 
                 if (!company.CompanyHasShippers.Any(s => s.Shipper.UserId == request.UserId && s.ShipperRole == EnShipperRole.Creator))
-                    return Task.FromResult(new GenericCommandResult(401, "Você não tem permissão para alterar as informações dessa empresa!", null));
+                    return Task.FromResult(new GenericCommandResult(403, "Você não tem permissão para alterar as informações dessa empresa!", null));
+
+                var exists = _companyRepository.Search(request.CNPJ);
+                if(exists != null && exists.Id != request.CompanyId)
+                    return Task.FromResult(new GenericCommandResult(404, "Já existe uma empresa cadastrada com esse CNPJ!", null));
+
+                if (request.DeleteLogo)
+                    company.ChangeLogo(null);
+                else if (request.Logo != null)
+                    company.ChangeLogo(UploadServices.Image(request.Logo));
 
                 company.ChangeCompany(request.Name, request.CNPJ, request.Segment);
 

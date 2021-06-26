@@ -43,5 +43,12 @@ namespace Domains.Entities
             CNPJ = cnpj;
             Segment = segment;
         }
+
+        public void ChangeLogo(
+            string urlLogo
+        )
+        {
+            UrlLogo = urlLogo;
+        }
     }
 }

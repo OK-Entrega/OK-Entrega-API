@@ -16,6 +16,14 @@ namespace API.Controllers
     {
         public CompanyController(IMediator mediator) : base(mediator) { }
 
+        [HttpGet("get-details")]
+        [Authorize]
+        public async Task<ObjectResult> GetDetails([FromQuery] GetDetailsRequest request)
+        {
+            request.UserId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            return await Result(request);
+        }
+
         [HttpGet("get-mine")]
         [Authorize]
         public async Task<ObjectResult> GetMine()
@@ -87,7 +95,7 @@ namespace API.Controllers
 
         [HttpPut("change-company")]
         [Authorize]
-        public async Task<ObjectResult> ChangeCompany(ChangeCompanyRequest request)
+        public async Task<ObjectResult> ChangeCompany([FromForm] ChangeCompanyRequest request)
         {
             request.UserId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
             return await Result(request);
