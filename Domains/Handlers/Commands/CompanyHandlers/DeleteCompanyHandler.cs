@@ -31,6 +31,9 @@ namespace Domains.Handlers.Commands.CompanyHandlers
                 if (!company.CompanyHasShippers.Any(s => s.Shipper.UserId == request.UserId && s.ShipperRole == EnShipperRole.Creator))
                     return Task.FromResult(new GenericCommandResult(401, "Você não tem permissão para deletar essa empresa!", null));
 
+                if(company.CNPJ != request.CNPJ)
+                    return Task.FromResult(new GenericCommandResult(404, "Por questões de segurança, digite corretamente o CNPJ da empresa!", null));
+
                 _companyRepository.Delete(company);
 
                 return Task.FromResult(new GenericCommandResult(200, $"{company.Name} deletada com sucesso!", null));
